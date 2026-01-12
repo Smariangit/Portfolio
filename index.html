@@ -78,7 +78,7 @@
         // FUNCTION TO CALCULATE DYNAMIC EXPERIENCE TIME
         function calculateExperienceTime() {
             // Start date: August 2023 (7, 2023) as the earliest entry in resume
-            const startDate = new Date(2023, 7, 1); 
+            const startDate = new Date(2023, 12, 1); 
             const currentDate = new Date();
 
             let years = currentDate.getFullYear() - startDate.getFullYear();
@@ -148,25 +148,30 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- 1. Hero Section - Bolding intentionally kept here for high impact -->
-        <section id="hero" class="py-20 md:py-32 flex flex-col items-center text-center">
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
-                Hi, I'm <span class="text-accent">Sparsh Verma</span>
-            </h1>
-            <h2 class="text-2xl md:text-3xl text-slate-300 font-light mb-6">
-                Data Engineer & Cloud Workflow Automation Specialist
-            </h2>
-            <p class="max-w-3xl text-slate-400 text-lg mb-10">
-                Data Engineer with <strong id="experience-duration">2+ years</strong> of experience designing resilient <strong>data pipelines</strong>, <strong>cloud workflows (GCP)</strong>, and <strong>BI solutions</strong>. Proven ability to leverage Python and automation tools to deliver measurable improvements, including <strong>reducing manual effort by 60%</strong>.
-            </p>
-            <div class="flex space-x-4">
-                <a onclick="scrollToSection('projects')" class="btn-primary px-6 py-3 rounded-xl font-semibold text-lg hover:ring-2 ring-cyan-400 cursor-pointer">
-                    View Projects
-                </a>
-				<a href="portfolio-gallery.html" class="bg-fuchsia-600 text-white px-6 py-3 rounded-xl font-semibold text-lg hover:bg-fuchsia-500 transition shadow-lg">
-				<i data-lucide="image" class="w-5 h-5 inline-block mr-2"></i> View Gallery
-					</a>
-<a href="mailto:sparshv2325@gmail.com" class="bg-slate-700 text-white px-6 py-3 rounded-xl font-semibold text-lg hover:bg-slate-600 transition">
-                    <i data-lucide="mail" class="w-5 h-5 inline-block mr-2"></i> Get In Touch
+		<section id="hero" class="py-20 md:py-32 flex flex-col items-center text-center">
+    <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
+        Hi, I'm <span class="text-accent">Sparsh Verma</span>
+    </h1>
+    <h2 class="text-2xl md:text-3xl text-slate-300 font-light mb-6">
+        Data Engineer & Cloud Workflow Automation Specialist
+    </h2>
+    <p class="max-w-3xl text-slate-400 text-lg mb-10">
+        Data Engineer with <strong id="experience-duration">2+ years</strong> of experience designing resilient <strong>data pipelines</strong>, <strong>cloud workflows (GCP)</strong>, and <strong>BI solutions</strong>. Proven ability to leverage Python and automation tools to deliver measurable improvements, including <strong>reducing manual effort by 60%</strong>.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+        <a onclick="scrollToSection('projects')" class="btn-primary px-6 py-3 rounded-xl font-semibold text-lg hover:bg-cyan-400 transition shadow-lg cursor-pointer"><i data-lucide="folder-code" class="w-5 h-5 inline-block mr-2"></i> View Projects
+        </a>
+
+        <a href="assets/Resume.pdf" target="_blank" class="btn-primary bg-emerald-500 text-white px-6 py-3 rounded-xl font-semibold text-lg hover:bg-emerald-400 transition shadow-lg cursor-pointer">
+            <i data-lucide="file-text" class="w-5 h-5 inline-block mr-2"></i> View Resume
+        </a>
+
+        <a href="portfolio-gallery.html" class="btn-primary bg-fuchsia-600 text-white px-6 py-3 rounded-xl font-semibold text-lg hover:bg-fuchsia-500 transition shadow-lg">
+            <i data-lucide="image" class="w-5 h-5 inline-block mr-2"></i> View Gallery
+        </a>
+
+        <a href="mailto:sparshv2325@gmail.com" class="btn-primary bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold text-lg hover:bg-indigo-500 transition shadow-lg">
+            <i data-lucide="mail" class="w-5 h-5 inline-block mr-2"></i> Get In Touch
                 </a>
             </div>
         </section>
