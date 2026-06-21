@@ -1,495 +1,764 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sparsh Verma | Data Engineer & Cloud Specialist</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        /* Custom styles for a technical, modern look */
-        :root {
-            --primary-color: #06b6d4; /* Cyan 500 */
-            --bg-color: #0f172a; /* Slate 900 */
-            --card-color: #1e293b; /* Slate 800 */
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: #f1f5f9; /* Slate 100 */
-            scroll-behavior: smooth;
-        }
-        .text-accent {
-            color: var(--primary-color);
-        }
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #0891b2; /* Cyan 600 */
-            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
-        }
-        .card {
-            background-color: var(--card-color);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-        .tech-tag {
-            background-color: #334155; /* Slate 700 */
-            color: #cbd5e1; /* Slate 300 */
-            border: 1px solid #475569; /* Slate 600 */
-        }
-        /* Style for the project 'Architecture Placeholder' - Now used as an image container */
-        .architecture-image-container {
-            width: 100%;
-            border: 2px solid #475569;
-            border-radius: 0.75rem;
-            overflow: hidden;
-            background-color: #1f2937;
-        }
-        .architecture-image-container img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-        
-        /* Image styling for Looker Studio */
-        .dashboard-screenshot {
-            width: 100%;
-            height: auto;
-            border-radius: 0.75rem;
-            object-fit: contain;
-            border: 1px solid #475569;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sparsh Verma | Data Engineer & Cloud Automation Specialist</title>
+<meta name="description" content="Sparsh Verma — Data Engineer building cloud-native pipelines, BI platforms, and applied GenAI automation on GCP.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-        /* --- CLASS FOR LARGER IMAGE DISPLAY (DEPRECATED FOR THIS PROJECT) --- */
-        @media (min-width: 768px) {
-            .project-layout-wide-img {
-                display: grid;
-                grid-template-columns: 1fr 2fr; /* Text takes 33%, Image takes 66% */
-                gap: 2rem;
-            }
-        }
-    </style>
-    <script>
-        // FUNCTION TO CALCULATE DYNAMIC EXPERIENCE TIME
-        function calculateExperienceTime() {
-            // Start date: August 2023 (7, 2023) as the earliest entry in resume
-            const startDate = new Date(2023, 12, 1); 
-            const currentDate = new Date();
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-            let years = currentDate.getFullYear() - startDate.getFullYear();
-            let months = currentDate.getMonth() - startDate.getMonth();
-            
-            // Adjust years and months
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
-
-            let summaryString = '';
-            let parts = [];
-            
-            if (years > 0) {
-                parts.push(years + (years === 1 ? ' year' : ' years'));
-            }
-            if (months > 0) {
-                parts.push(months + (months === 1 ? ' month' : ' months'));
-            }
-            
-            if (parts.length > 0) {
-                summaryString = parts.join(' and ');
-            } else {
-                summaryString = 'less than a month'; // Fallback for very new experience
-            }
-
-            const experienceElement = document.getElementById('experience-duration');
-            if (experienceElement) {
-                experienceElement.textContent = summaryString;
-            }
-        }
-
-        // Initialize Lucide icons
-        window.onload = function() {
-            lucide.createIcons();
-            calculateExperienceTime(); // Calculate and display on load
-        }
-        
-        // Simple navigation logic (since it's a single page)
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#0A0F1C',
+          elevated: '#121B2D',
+          elevated2: '#172338',
+          line: '#24314c',
+          amber: { DEFAULT: '#F2A93B', dim: '#c98f33' },
+          teal: { DEFAULT: '#3FDFC9' },
+          rose: '#F2618C',
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+<link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="antialiased">
+<body class="antialiased font-body bg-ink text-[#EDF1F7]">
 
-    <!-- Navbar (Fixed Header) -->
-    <header class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-sm shadow-lg">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold tracking-tight">
-                <a href="#" class="text-accent hover:text-white transition duration-200">Sparsh.DE</a>
-            </div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a onclick="scrollToSection('skills')" class="hover:text-accent cursor-pointer transition duration-200">Skills</a>
-                <a onclick="scrollToSection('experience')" class="hover:text-accent cursor-pointer transition duration-200">Experience</a>
-                <a onclick="scrollToSection('projects')" class="hover:text-accent cursor-pointer transition duration-200">Projects</a>
-                <a onclick="scrollToSection('contact')" class="hover:text-accent cursor-pointer transition duration-200">Contact</a>
-            </div>
-            <button onclick="scrollToSection('projects')" class="md:hidden p-2 rounded-full text-accent hover:bg-slate-800 transition">
-                <i data-lucide="folder-code" class="w-6 h-6"></i>
-            </button>
-        </nav>
-    </header>
+<!-- ============ HEADER ============ -->
+<header class="site-header sticky top-0 z-50">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+    <a href="#hero" class="font-display text-xl font-bold tracking-tight text-[#EDF1F7]">
+      sparsh<span class="text-amber">.</span>dev<span class="logo-cursor" aria-hidden="true"></span>
+    </a>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="hidden md:flex items-center space-x-8 text-sm font-medium font-body">
+      <a href="#about" data-nav-link="about" class="nav-link">About</a>
+      <a href="#skills" data-nav-link="skills" class="nav-link">Skills</a>
+      <a href="#experience" data-nav-link="experience" class="nav-link">Experience</a>
+      <a href="#projects" data-nav-link="projects" class="nav-link">Projects</a>
+      <a href="portfolio-gallery.html" class="nav-link">Gallery</a>
+      <a href="#contact" data-nav-link="contact" class="nav-link">Contact</a>
+    </div>
 
-        <!-- 1. Hero Section - Bolding intentionally kept here for high impact -->
-		<section id="hero" class="py-20 md:py-32 flex flex-col items-center text-center">
-    <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
-        Hi, I'm <span class="text-accent">Sparsh Verma</span>
-    </h1>
-    <h2 class="text-2xl md:text-3xl text-slate-300 font-light mb-6">
-        Data Engineer & Cloud Workflow Automation Specialist
-    </h2>
-    <p class="max-w-3xl text-slate-400 text-lg mb-10">
-        Data Engineer with <strong id="experience-duration">2+ years</strong> of experience designing resilient <strong>data pipelines</strong>, <strong>cloud workflows (GCP)</strong>, and <strong>BI solutions</strong>. Proven ability to leverage Python and automation tools to deliver measurable improvements, including <strong>reducing manual effort by 60%</strong>.
-    </p>
-    <div class="flex flex-wrap justify-center gap-4">
-        <a onclick="scrollToSection('projects')" class="btn-primary px-6 py-3 rounded-xl font-semibold text-lg hover:bg-cyan-400 transition shadow-lg cursor-pointer"><i data-lucide="folder-code" class="w-5 h-5 inline-block mr-2"></i> View Projects
+    <div class="hidden md:block">
+      <a href="assets/Resume.pdf" target="_blank" class="btn btn-outline !py-2 !px-4 text-sm">
+        <i data-lucide="file-text" class="w-4 h-4"></i> Résumé
+      </a>
+    </div>
+
+    <button id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg text-[#EDF1F7] hover:bg-elevated transition">
+      <i data-lucide="menu" class="w-6 h-6" data-icon-open></i>
+      <i data-lucide="x" class="w-6 h-6 hidden" data-icon-close></i>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="md:hidden border-t border-line">
+    <div class="px-4 sm:px-6 py-4 flex flex-col space-y-3 font-body text-base">
+      <a href="#about" class="nav-link py-1.5">About</a>
+      <a href="#skills" class="nav-link py-1.5">Skills</a>
+      <a href="#experience" class="nav-link py-1.5">Experience</a>
+      <a href="#projects" class="nav-link py-1.5">Projects</a>
+      <a href="portfolio-gallery.html" class="nav-link py-1.5">Gallery</a>
+      <a href="#contact" class="nav-link py-1.5">Contact</a>
+      <a href="assets/Resume.pdf" target="_blank" class="btn btn-primary !py-2.5 mt-2 justify-center">
+        <i data-lucide="file-text" class="w-4 h-4"></i> Download Résumé
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PIPELINE RAIL (scroll-spy signature element) ============ -->
+<nav class="rail" aria-label="Page sections, shown as pipeline stages">
+  <div class="rail-track" style="height: 220px;"></div>
+  <div class="rail-fill" style="height: 220px;"></div>
+  <div class="rail-node" data-rail-node="about" style="height:55px;"><span class="rail-tag">01 · Source</span><span class="rail-dot"></span></div>
+  <div class="rail-node" data-rail-node="skills" style="height:55px;"><span class="rail-tag">02 · Transform</span><span class="rail-dot"></span></div>
+  <div class="rail-node" data-rail-node="experience" style="height:55px;"><span class="rail-tag">03 · Process</span><span class="rail-dot"></span></div>
+  <div class="rail-node" data-rail-node="projects" style="height:55px;"><span class="rail-tag">04 · Output</span><span class="rail-dot"></span></div>
+  <div class="rail-node" data-rail-node="contact" style="height:55px;"><span class="rail-tag">05 · Sink</span><span class="rail-dot"></span></div>
+</nav>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+  <!-- ============ HERO ============ -->
+  <section id="hero" class="py-16 md:py-28 grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <div class="status-pill mb-6">
+        <span class="status-dot" aria-hidden="true"></span> Open to data engineering &amp; GenAI opportunities
+      </div>
+
+      <h1 class="font-display text-5xl md:text-6xl font-bold mb-3 tracking-tight">
+        Sparsh Verma
+      </h1>
+      <h2 class="font-display text-xl md:text-2xl text-teal font-medium mb-6">
+        Data Engineer &amp; Cloud Automation Specialist
+      </h2>
+      <p class="text-[#93A1BD] text-lg leading-relaxed mb-8 max-w-xl">
+        I design resilient data pipelines and cloud-native workflows on GCP — turning manual,
+        error-prone reporting into systems that run themselves. Over
+        <strong class="text-[#EDF1F7]"><span data-experience-duration>2+ years</span></strong>
+        shipping production pipelines, BI platforms, and — most recently — applied GenAI automation.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 mb-6">
+        <a href="#projects" class="btn btn-primary">
+          <i data-lucide="folder-code" class="w-5 h-5"></i> View Projects
         </a>
-
-        <a href="assets/Resume.pdf" target="_blank" class="btn-primary bg-emerald-500 text-white px-6 py-3 rounded-xl font-semibold text-lg hover:bg-emerald-400 transition shadow-lg cursor-pointer">
-            <i data-lucide="file-text" class="w-5 h-5 inline-block mr-2"></i> View Resume
+        <a href="assets/Resume.pdf" target="_blank" class="btn btn-outline">
+          <i data-lucide="file-text" class="w-5 h-5"></i> Download Résumé
         </a>
+      </div>
 
-        <a href="portfolio-gallery.html" class="btn-primary bg-fuchsia-600 text-white px-6 py-3 rounded-xl font-semibold text-lg hover:bg-fuchsia-500 transition shadow-lg">
-            <i data-lucide="image" class="w-5 h-5 inline-block mr-2"></i> View Gallery
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-mono text-[#5C6B85]">
+        <a href="portfolio-gallery.html" class="btn-ghost flex items-center gap-1.5">
+          Project Gallery <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </a>
+        <span class="text-line">/</span>
+        <a href="mailto:sparshv2325@gmail.com" class="hover:text-teal transition flex items-center gap-1.5"><i data-lucide="mail" class="w-4 h-4"></i> Email</a>
+        <a href="https://github.com/smariangit" target="_blank" class="hover:text-teal transition flex items-center gap-1.5"><svg viewBox="0 0 16 16" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8Z"/></svg> GitHub</a>
+        <a href="#" target="_blank" class="hover:text-teal transition flex items-center gap-1.5"><svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg> LinkedIn</a>
+      </div>
+    </div>
 
-        <a href="mailto:sparshv2325@gmail.com" class="btn-primary bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold text-lg hover:bg-indigo-500 transition shadow-lg">
-            <i data-lucide="mail" class="w-5 h-5 inline-block mr-2"></i> Get In Touch
-                </a>
-            </div>
-        </section>
-
-        <!-- 2. Skills & Certifications Section -->
-        <section id="skills" class="py-16 border-t border-slate-700">
-            <h3 class="text-4xl font-bold mb-10 text-center">Core Expertise</h3>
-            
-            <!-- Certifications Block -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <div class="flex items-center space-x-2 p-3 card rounded-xl border border-yellow-500/50">
-                    <i data-lucide="sparkles" class="w-6 h-6 text-yellow-500"></i>
-                    <span class="font-semibold">Google Generative AI Leader</span>
-                </div>
-                <div class="flex items-center space-x-2 p-3 card rounded-xl border border-cyan-400/50">
-                    <i data-lucide="cloud" class="w-6 h-6 text-cyan-400"></i>
-                    <span class="font-semibold">Associate Cloud Developer (GCP)</span>
-                </div>
-                <div class="flex items-center space-x-2 p-3 card rounded-xl border border-amber-500/50">
-                    <i data-lucide="git-branch" class="w-6 h-6 text-amber-500"></i>
-                    <span class="font-semibold">AWS Cloud Developer (Silver Badge)</span>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Category 1: Cloud & Infrastructure -->
-                <div class="card p-6 rounded-2xl">
-                    <h4 class="text-xl font-semibold mb-4 flex items-center"><i data-lucide="server" class="w-5 h-5 mr-2 text-red-400"></i> Cloud & IaC</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">Google Cloud Platform</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">Terraform (IaC)</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">AWS (S3, EC2)</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">DigitalOcean</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">Linux / Git</span>
-                    </div>
-                </div>
-
-                <!-- Category 2: Data Engineering & ETL -->
-                <div class="card p-6 rounded-2xl">
-                    <h4 class="text-xl font-semibold mb-4 flex items-center"><i data-lucide="layout-grid" class="w-5 h-5 mr-2 text-green-400"></i> ETL & Processing</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">Python</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">SQL / BigQuery</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">FastAPI / Flask</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">ELK Stack (ElasticSearch, Kibana)</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">REST API Integration</span>
-                    </div>
-                </div>
-
-                <!-- Category 3: BI & Automation -->
-                <div class="card p-6 rounded-2xl">
-                    <h4 class="text-xl font-semibold mb-4 flex items-center"><i data-lucide="monitor" class="w-5 h-5 mr-2 text-blue-400"></i> BI & Data Ops</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">Power BI</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">Google Looker Studio</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">GCP CI/CD (Cloud Run)</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">PowerApps / Power Automate</span>
-                        <span class="tech-tag px-3 py-1 rounded-full text-sm">Cron Jobs & Automation Scripts</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. Professional Experience Section - BOLDING REMOVED -->
-        <section id="experience" class="py-16 border-t border-slate-700">
-            <h3 class="text-4xl font-bold mb-10 text-center">Professional Experience</h3>
-            
-            <div class="space-y-12">
-                <!-- HCLTech -->
-                <div class="card p-8 rounded-2xl border-l-4 border-accent transition duration-300 hover:border-blue-500">
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="text-2xl font-semibold">Software Engineer</h4>
-                        <span class="text-sm text-slate-400">[Jan '24 - Present]</span>
-                    </div>
-                    <p class="text-lg text-slate-300 mb-4">HCLTech, Noida, India</p>
-                    <ul class="list-none space-y-3 text-slate-400">
-                        <li class="flex items-start">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-accent mr-3 mt-1 shrink-0"></i>
-                            Built end-to-end data pipelines for Power BI dashboards, sourcing data directly from GCP BigQuery.
-                        </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-accent mr-3 mt-1 shrink-0"></i>
-                            Deployed GCP CI/CD workflows for Python-based Cloud Run functions to ensure robust and automated data flows.
-                        </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-accent mr-3 mt-1 shrink-0"></i>
-                            Developed a critical automation solution using PowerApps, Power Automate, and FastAPI.
-                        </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-accent mr-3 mt-1 shrink-0"></i>
-                            This solution achieved a 60% reduction in manual effort across existing processes.
-                        </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-accent mr-3 mt-1 shrink-0"></i>
-                            Implemented Terraform IaC for disaster recovery of GCP infrastructure, ensuring one-click infra rebuild and 100% business continuity.
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Blackcoffer Consulting Firm -->
-                <div class="card p-8 rounded-2xl border-l-4 border-yellow-500 transition duration-300 hover:border-yellow-600">
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="text-2xl font-semibold">Data Science Intern</h4>
-                        <span class="text-sm text-slate-400">[Aug '23 - Jan '24]</span>
-                    </div>
-                    <p class="text-lg text-slate-300 mb-4">Blackcoffer Consulting Firm, Delhi, India</p>
-                    <ul class="list-none space-y-3 text-slate-400">
-                        <li class="flex items-start">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-yellow-500 mr-3 mt-1 shrink-0"></i>
-                            Designed FastAPIs and pipelines for Looker Studio integration with GCP, eliminating manual intervention and improving reporting speed by 30%.
-                        </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-yellow-500 mr-3 mt-1 shrink-0"></i>
-                            Developed Python-based ETL scripts to interact with external APIs (RapidAPI, Looker API), automating data ingestion.
-                        </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-yellow-500 mr-3 mt-1 shrink-0"></i>
-                            Automated workflows utilizing GCP (BigQuery), DigitalOcean, and ELK Stack (Kibana) for scalable data operations.
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. Key Projects Section - BOLDING REMOVED -->
-        <section id="projects" class="py-16 border-t border-slate-700">
-            <h3 class="text-4xl font-bold mb-10 text-center">Key Engineering Projects</h3>
-            <p class="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
-                These projects showcase my ability to design, implement, and optimize scalable, reliable, and automated data infrastructure across cloud environments.
-            </p>
-
-            <div class="space-y-16">
-
-                <!-- PROJECT 1: Interactive Looker Studio Dashboard - REVERTED TO STACKED LAYOUT AND REDUCED IMAGE SIZE -->
-                <div class="card p-8 rounded-2xl border-l-4 border-fuchsia-500">
-                    <!-- Removed project-layout-wide-img class to revert to stacked layout -->
-                    <h4 class="text-3xl font-bold text-fuchsia-400 mb-3 text-center">Interactive BI Dashboard</h4>
-                    
-                    <!-- Image centered and reduced -->
-                    <div class="flex justify-center mb-6">
-                        <img src="Pictures/image_fb3b44.jpg" 
-                             alt="Screenshot of Looker Studio Dashboard on Crimes in India" 
-                             class="dashboard-screenshot shadow-xl max-w-3xl mx-auto"> <!-- Added max-w-3xl and mx-auto -->
-                    </div>
-
-                    <!-- Text and Button Block (now below the image) -->
-                    <div class="text-center">
-                        <p class="text-slate-400 text-lg mb-6 max-w-3xl mx-auto">
-                            A live demonstration of business intelligence reporting, facilitated by automated GCP and Python pipelines, showing actionable insights into "Crimes in India" (2020-2022).
-                        </p>
-
-                        <h5 class="font-semibold text-slate-300 mb-2">Technologies</h5>
-                        <div class="flex flex-wrap gap-2 justify-center mb-6">
-                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Google Looker Studio</span>
-                            <span class="tech-tag px-3 py-1 rounded-full text-sm">GCP BigQuery</span>
-                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Python Data Pipeline</span>
-                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Looker API / Google APIs</span>
-                        </div>
-                        
-                        <h5 class="font-semibold text-slate-300 mb-2">Key Highlights</h5>
-                        <ul class="list-disc list-inside text-slate-400 space-y-1 mb-6 text-left inline-block">
-                            <li>Directly integrated with GCP BigQuery via an automated data pipeline.</li>
-                            <li>Designed to improve data accessibility and facilitate quicker stakeholder decision-making.</li>
-                            <li>This project demonstrates end-to-end ELT/BI capability from source to visualization.</li>
-                        </ul>
-                        
-                        <!-- Button for Live Dashboard -->
-                        <div class="flex justify-center">
-                            <a href="https://lookerstudio.google.com/reporting/d1531916-abb9-4b6d-ba63-aff9a4465eda" target="_blank" class="btn-primary w-full md:w-auto px-6 py-3 rounded-xl font-semibold text-lg hover:ring-2 ring-cyan-400 flex items-center justify-center mt-4 md:mt-0">
-                                View Live Dashboard <i data-lucide="external-link" class="w-5 h-5 ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                
-                <!-- Project 2: Client Data Automation Solutions (GCP, CI/CD, Terraform) -->
-                <div class="card p-8 rounded-2xl border-l-4 border-fuchsia-500">
-                    <h4 class="text-3xl font-bold text-accent mb-3">Client Data Automation Solutions</h4>
-                    <p class="text-slate-400 text-lg mb-6">Built and deployed automated pipelines for enterprise reporting (HCLTech)</p>
-
-                    <div class="grid md:grid-cols-3 gap-6 mb-6">
-                        <div class="col-span-1">
-                            <h5 class="font-semibold text-slate-300 mb-2">Technologies</h5>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">GCP (Cloud Run, BigQuery)</span>
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">Terraform (IaC)</span>
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">Python</span>
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">Power BI</span>
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">FastAPI</span>
-                            </div>
-                        </div>
-                        <div class="col-span-2">
-                            <h5 class="font-semibold text-slate-300 mb-2">Key Achievements</h5>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1">
-                                <li>Streamlined data flow (SharePoint $\rightarrow$ BigQuery $\rightarrow$ Power BI), reducing manual reporting by 35%.</li>
-                                <li>Designed CI/CD workflows for Cloud Run functions, cutting deployment time by 60%.</li>
-                                <li>Automated data freeze process, reducing manual work from 4 hours to 45 minutes.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- ARCHITECTURE DIAGRAM 1: BI_pipeline.png -->
-                    <div class="architecture-image-container mb-4">
-                        <img src="Pictures/BI_Pipeline.png" alt="Architectural diagram showing SharePoint, GCP BigQuery, and Power BI pipeline flow">
-                    </div>
-
-                    <div class="text-right mt-4">
-                        <a href="https://github.com/your-repo-link" target="_blank" class="text-accent hover:underline flex items-center justify-end">
-                            View Code & Documentation <i data-lucide="external-link" class="w-4 h-4 ml-1"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 3: Automated Data Mining, Cleaning and Loading (ETL) -->
-                <div class="card p-8 rounded-2xl border-l-4 border-fuchsia-500">
-                    <h4 class="text-3xl font-bold text-accent mb-3">Automated UK Government Data ETL</h4>
-                    <p class="text-slate-400 text-lg mb-6">Developed an ETL tool to ingest and refine large datasets for a client web application.</p>
-
-                    <div class="grid md:grid-cols-3 gap-6 mb-6">
-                        <div class="col-span-1">
-                            <h5 class="font-semibold text-slate-300 mb-2">Technologies</h5>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">Python (Pandas, Libraries)</span>
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">PostgreSQL</span>
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">Data Mining Scripts</span>
-                            </div>
-                        </div>
-                        <div class="col-span-2">
-                            <h5 class="font-semibold text-slate-300 mb-2">Key Achievements</h5>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1">
-                                <li>Built a robust ETL tool to mine large datasets from various UK government sources.</li>
-                                <li>Ensured data refinement and structured loading into PostgreSQL to support a client-facing web application.</li>
-                                <li>Facilitated real-time information availability and reporting for stakeholders.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- ARCHITECTURE DIAGRAM 2: Solomon_Workflow.png -->
-                    <div class="architecture-image-container mb-4">
-                        <img src="Pictures/Solomon_Workflow.png" alt="Architectural diagram showing UK Government data ingestion and ETL flow" onerror="this.onerror=null;this.src='https://placehold.co/800x300/1f2937/94a3b8?text=Solomon_Workflow.png+Diagram+Placeholder';">
-                    </div>
-
-                    <div class="text-right mt-4">
-                        <a href="https://github.com/your-repo-link" target="_blank" class="text-accent hover:underline flex items-center justify-end">
-                            View Code & Documentation <i data-lucide="external-link" class="w-4 h-4 ml-1"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 4: Sentiment Analysis of Scraped Content -->
-                <div class="card p-8 rounded-2xl border-l-4 border-fuchsia-500">
-                    <h4 class="text-3xl font-bold text-accent mb-3">Content Sentiment Analysis Pipeline</h4>
-                    <p class="text-slate-400 text-lg mb-6">Automated script to calculate sentiment from 200+ scraped websites.</p>
-
-                    <div class="grid md:grid-cols-3 gap-6 mb-6">
-                        <div class="col-span-1">
-                            <h5 class="font-semibold text-slate-300 mb-2">Technologies</h5>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">Python</span>
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">BeautifulSoup</span>
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">Selenium</span>
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">Natural Language Processing</span>
-                            </div>
-                        </div>
-                        <div class="col-span-2">
-                            <h5 class="font-semibold text-slate-300 mb-2">Key Achievements</h5>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1">
-                                <li>Developed an automated Python script for web scraping content from over 200 sources.</li>
-                                <li>Implemented NLP techniques to accurately calculate sentiment scores for literary content.</li>
-                                <li>The pipeline ensures continuous data feed for trend analysis and content strategy.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- ARCHITECTURE DIAGRAM 2: Solomon_Workflow.png -->
-                    <div class="architecture-image-container mb-4">
-                        <img src="Pictures/Web_scrape.png" alt="Web Scrape Automated Workflow for Sentiment Analysis">
-                    </div>
-                    <div class="text-right mt-4">
-                        <a href="https://github.com/your-repo-link" target="_blank" class="text-accent hover:underline flex items-center justify-end">
-                            View Code & Documentation <i data-lucide="external-link" class="w-4 h-4 ml-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Contact Section -->
-        <section id="contact" class="py-16 border-t border-slate-700 mb-10">
-            <h3 class="text-4xl font-bold mb-6 text-center">Let's Connect</h3>
-            <p class="text-center text-slate-400 mb-10 max-w-xl mx-auto">
-                I'm currently working as a Software Engineer but always open to discussing new opportunities in Data Engineering and Cloud Architecture. Feel free to reach out!
-            </p>
-
-            <div class="flex justify-center space-x-6">
-                <a href="mailto:sparshv2325@gmail.com" class="card p-4 rounded-xl hover:ring-2 ring-accent transition duration-300 flex items-center space-x-2 text-lg">
-                    <i data-lucide="mail" class="w-6 h-6 text-red-500"></i>
-                    <span>Mail</span>
-                </a>
-                <a href="https://github.com/your-github" target="_blank" class="card p-4 rounded-xl hover:ring-2 ring-accent transition duration-300 flex items-center space-x-2 text-lg">
-                    <i data-lucide="github" class="w-6 h-6 text-white"></i>
-                    <span>GitHub</span>
-                </a>
-                <a href="https://linkedin.com/in/your-linkedin" target="_blank" class="card p-4 rounded-xl hover:ring-2 ring-accent transition duration-300 flex items-center space-x-2 text-lg">
-                    <i data-lucide="linkedin" class="w-6 h-6 text-blue-400"></i>
-                    <span>LinkedIn</span>
-                </a>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 py-8 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-slate-500">
-            <p>&copy; 2024 Sparsh Verma. Data Engineering Portfolio.</p>
-            <p class="mt-2">Built with <span class="text-red-500">♥</span> and Tailwind CSS.</p>
+    <div class="reveal">
+      <div class="console">
+        <div class="console-bar">
+          <span class="console-dot" style="background:#F2618C"></span>
+          <span class="console-dot" style="background:#F2A93B"></span>
+          <span class="console-dot" style="background:#5FD08A"></span>
+          <span class="ml-3 font-mono text-xs text-[#5C6B85]">ops-console — sparsh@portfolio:~</span>
         </div>
-    </footer>
+        <div class="console-body">
+<div><span class="console-prompt">$</span> whoami</div>
+<div class="console-out">&gt; Software Engineer, HCLTech</div>
+<div class="mt-2"><span class="console-prompt">$</span> uptime --professional-experience</div>
+<div class="console-out">&gt; <span data-experience-duration>2 years</span> shipping data systems</div>
+<div class="mt-2"><span class="console-prompt">$</span> pipelines --status</div>
+<div><span class="console-ok">[OK]</span> BigQuery + Power BI reporting</div>
+<div><span class="console-ok">[OK]</span> GCP Cloud Run CI/CD</div>
+<div><span class="console-ok">[OK]</span> Terraform disaster recovery</div>
+<div><span class="console-ok">[OK]</span> LLM-based PII redaction · 99% acc.</div>
+        </div>
+        <div class="console-stats">
+          <div class="console-stat"><div class="num">3</div><div class="lbl">Cloud Certs</div></div>
+          <div class="console-stat"><div class="num">6</div><div class="lbl">Shipped Projects</div></div>
+          <div class="console-stat"><div class="num">10k+</div><div class="lbl">Users Reached</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ============ ABOUT / SOURCE ============ -->
+  <section id="about" data-stage-section class="py-16 border-t border-line reveal">
+    <span class="eyebrow mb-4">Stage 01 // Source</span>
+    <h3 class="font-display text-3xl md:text-4xl font-bold mb-10">Where the data starts</h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div class="md:col-span-2 text-[#93A1BD] text-lg leading-relaxed space-y-4">
+        <p>
+          I'm a data engineer based in Delhi NCR, India, currently building automation and
+          AI-driven data pipelines at <strong class="text-[#EDF1F7]">HCLTech</strong>. My work sits at the
+          intersection of cloud infrastructure, ETL design, and — more recently — applying LLMs to
+          real production problems like PII redaction.
+        </p>
+        <p>
+          Before this, I cut my teeth at <strong class="text-[#EDF1F7]">Blackcoffer Consulting</strong>,
+          shipping BI dashboards and scraping pipelines for clients across sectors. I like systems that
+          remove a human from a repetitive loop — and I like it even more when I can prove it with a number.
+        </p>
+        <p>
+          Outside the stack, I led my college's Editorial Club and served as Student Council Coordinator —
+          same instinct for turning chaos into a clean pipeline, just with people instead of data.
+        </p>
+      </div>
+
+      <div class="card rounded-2xl p-6">
+        <dl class="quick-facts">
+          <dt>Location</dt>
+          <dd>Delhi NCR, India</dd>
+          <dt>Education</dt>
+          <dd>B.Tech, Computer Science — Galgotias College of Engineering &amp; Technology (2019–2023)</dd>
+          <dt>Focus</dt>
+          <dd>Cloud-native pipelines + applied GenAI</dd>
+          <dt>Status</dt>
+          <dd class="!mb-0 flex items-center gap-2"><span class="status-dot"></span> Open to new opportunities</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS / TRANSFORM ============ -->
+  <section id="skills" data-stage-section class="py-16 border-t border-line reveal">
+    <span class="eyebrow mb-4">Stage 02 // Transform</span>
+    <h3 class="font-display text-3xl md:text-4xl font-bold mb-10">Core Expertise</h3>
+
+    <div class="flex flex-wrap gap-4 mb-12">
+      <div class="flex items-center space-x-2 p-3 card rounded-xl">
+        <i data-lucide="sparkles" class="w-5 h-5 text-amber"></i>
+        <span class="font-medium text-sm">Google Generative AI Leader</span>
+      </div>
+      <div class="flex items-center space-x-2 p-3 card rounded-xl">
+        <i data-lucide="cloud" class="w-5 h-5 text-teal"></i>
+        <span class="font-medium text-sm">Associate Cloud Developer (GCP)</span>
+      </div>
+      <div class="flex items-center space-x-2 p-3 card rounded-xl">
+        <i data-lucide="git-branch" class="w-5 h-5 text-amber"></i>
+        <span class="font-medium text-sm">AWS Cloud Developer (Silver Badge)</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="card card-hover p-6 rounded-2xl">
+        <h4 class="text-lg font-display font-semibold mb-4 flex items-center gap-2"><i data-lucide="server" class="w-5 h-5 text-rose"></i> Cloud &amp; IaC</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="tag">Google Cloud Platform</span>
+          <span class="tag">Terraform (IaC)</span>
+          <span class="tag">AWS (S3, EC2)</span>
+          <span class="tag">DigitalOcean</span>
+          <span class="tag">Linux / Git</span>
+        </div>
+      </div>
+
+      <div class="card card-hover p-6 rounded-2xl">
+        <h4 class="text-lg font-display font-semibold mb-4 flex items-center gap-2"><i data-lucide="layout-grid" class="w-5 h-5 text-teal"></i> ETL &amp; Processing</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="tag">Python</span>
+          <span class="tag">SQL / BigQuery</span>
+          <span class="tag">FastAPI / Flask</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">ELK Stack</span>
+          <span class="tag">REST API Integration</span>
+        </div>
+      </div>
+
+      <div class="card card-hover p-6 rounded-2xl">
+        <h4 class="text-lg font-display font-semibold mb-4 flex items-center gap-2"><i data-lucide="monitor" class="w-5 h-5 text-amber"></i> BI &amp; Data Ops</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="tag">Power BI</span>
+          <span class="tag">Google Looker Studio</span>
+          <span class="tag">GCP CI/CD (Cloud Run)</span>
+          <span class="tag">PowerApps / Power Automate</span>
+          <span class="tag">Cron &amp; Automation Scripts</span>
+        </div>
+      </div>
+
+      <div class="card card-hover p-6 rounded-2xl">
+        <h4 class="text-lg font-display font-semibold mb-4 flex items-center gap-2"><i data-lucide="brain-circuit" class="w-5 h-5 text-rose"></i> AI &amp; GenAI Tooling</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="tag">LangChain</span>
+          <span class="tag">OpenAI API</span>
+          <span class="tag">Ollama</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">LLM Pipelines</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE / PROCESS ============ -->
+  <section id="experience" data-stage-section class="py-16 border-t border-line reveal">
+    <span class="eyebrow mb-4">Stage 03 // Process</span>
+    <h3 class="font-display text-3xl md:text-4xl font-bold mb-10">Professional Experience</h3>
+
+    <div class="space-y-10">
+      <div class="card card-hover p-8 rounded-2xl border-l-4 border-amber">
+        <div class="flex flex-wrap justify-between items-start gap-2 mb-2">
+          <h4 class="text-2xl font-display font-semibold">Software Engineer</h4>
+          <span class="tag">Jan '24 — Present</span>
+        </div>
+        <p class="text-lg text-[#93A1BD] mb-5">HCLTech, Noida, India</p>
+        <ul class="space-y-3 text-[#93A1BD]">
+          <li class="flex items-start gap-3"><i data-lucide="users" class="w-5 h-5 text-amber mt-0.5 shrink-0"></i> Led a 7-person team delivering a deterministic AI/LLM pipeline that replaced a fully manual content-review step.</li>
+          <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-amber mt-0.5 shrink-0"></i> Built automated Python → BigQuery → Power BI reporting pipelines, cutting manual reporting effort by 35%.</li>
+          <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-amber mt-0.5 shrink-0"></i> Shipped a PowerApps / Power Automate / FastAPI survey tool to 10,000+ coworkers via SMTP, cutting manual effort by 60%.</li>
+          <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-amber mt-0.5 shrink-0"></i> Designed CI/CD workflows for GCP Cloud Run functions, cutting deployment time by 60%.</li>
+          <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-amber mt-0.5 shrink-0"></i> Implemented Terraform-based disaster recovery for GCP, enabling one-click infrastructure rebuild and 100% business continuity.</li>
+        </ul>
+      </div>
+
+      <div class="card card-hover p-8 rounded-2xl border-l-4 border-teal">
+        <div class="flex flex-wrap justify-between items-start gap-2 mb-2">
+          <h4 class="text-2xl font-display font-semibold">Data Science Intern</h4>
+          <span class="tag">Aug '23 — Jan '24</span>
+        </div>
+        <p class="text-lg text-[#93A1BD] mb-5">Blackcoffer Consulting Firm, Delhi, India</p>
+        <ul class="space-y-3 text-[#93A1BD]">
+          <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i> Built FastAPI pipelines connecting Google Looker Studio to BigQuery, improving reporting speed by 30%.</li>
+          <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i> Designed and published interactive Power BI / DAX dashboards for client stakeholders.</li>
+          <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i> Automated Python ETL scripts for data ingestion from external APIs (RapidAPI, Looker API).</li>
+          <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i> Built automated web-scraping workflows (BeautifulSoup) feeding BigQuery and the ELK Stack for analysis.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS / OUTPUT ============ -->
+  <section id="projects" data-stage-section class="py-16 border-t border-line reveal">
+    <span class="eyebrow mb-4">Stage 04 // Output</span>
+    <h3 class="font-display text-3xl md:text-4xl font-bold mb-4">Key Engineering Projects</h3>
+    <p class="text-[#93A1BD] text-lg mb-12 max-w-2xl">
+      Six production builds — one shipped solo end-to-end, the rest spanning applied GenAI, BI
+      platforms, and cloud-native ETL — each one designed to take a slow, manual process and make it run on its own.
+    </p>
+
+    <div class="space-y-12">
+
+      <!-- PROJECT 0: SSBForge (personal project, live) -->
+      <div class="card p-8 rounded-2xl border-l-4 border-rose">
+        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+          <h4 class="text-2xl md:text-3xl font-display font-bold text-rose">SSBForge — SSB Interview Prep Platform</h4>
+          <span class="tag flex items-center gap-1.5"><i data-lucide="flame" class="w-3.5 h-3.5"></i> Live — personal project</span>
+        </div>
+        <p class="text-[#93A1BD] text-lg mb-6">
+          A free, full-stack platform helping India's defence aspirants prepare for the SSB interview —
+          six timed practice modules, Supabase-backed auth, and a ₹51/month premium tier, built and shipped solo.
+        </p>
+
+        <div class="browser-frame mb-6">
+          <div class="chrome">
+            <span class="console-dot" style="background:#F2618C; width:9px; height:9px;"></span>
+            <span class="console-dot" style="background:#F2A93B; width:9px; height:9px;"></span>
+            <span class="console-dot" style="background:#5FD08A; width:9px; height:9px;"></span>
+            <span class="url">ssbforge.in</span>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-hero">
+              <div class="kicker">Indian Armed Forces Selection Prep</div>
+              <h6>Forge Your Officer's Mindset</h6>
+            </div>
+            <div class="mockup-grid">
+              <div class="mockup-tile"><i data-lucide="image" class="w-4 h-4 ic"></i><div class="name">TAT</div><div class="time">30s / image</div></div>
+              <div class="mockup-tile"><i data-lucide="pen-line" class="w-4 h-4 ic"></i><div class="name">WAT</div><div class="time">15s / word</div></div>
+              <div class="mockup-tile"><i data-lucide="users" class="w-4 h-4 ic"></i><div class="name">PPDT</div><div class="time">4 min write</div></div>
+              <div class="mockup-tile"><i data-lucide="mic" class="w-4 h-4 ic"></i><div class="name">Lecturette</div><div class="time">3+3 min</div></div>
+              <div class="mockup-tile"><i data-lucide="list-checks" class="w-4 h-4 ic"></i><div class="name">GPE</div><div class="time">10 min plan</div></div>
+              <div class="mockup-tile"><i data-lucide="zap" class="w-4 h-4 ic"></i><div class="name">SRT</div><div class="time">30s / situation</div></div>
+            </div>
+            <div class="mockup-footer">
+              <span class="mockup-pill">★ Premium — ₹51/mo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div>
+            <h5 class="font-mono text-xs uppercase tracking-wide text-[#5C6B85] mb-3">Technologies</h5>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">HTML / CSS / JS</span>
+              <span class="tag">Supabase (Auth + Storage)</span>
+              <span class="tag">Razorpay</span>
+              <span class="tag">GitHub Actions CI/CD</span>
+            </div>
+          </div>
+          <div class="md:col-span-2">
+            <h5 class="font-mono text-xs uppercase tracking-wide text-[#5C6B85] mb-3">Key Highlights</h5>
+            <ul class="space-y-1.5 text-[#93A1BD]">
+              <li>• Six timed practice modules (TAT, WAT, PPDT, SRT, Lecturette, GPE) that mirror real SSB conditions down to the second.</li>
+              <li>• Built a Supabase Auth system with session caching and token refresh, gating premium content behind signed URLs.</li>
+              <li>• Automated content-index regeneration via GitHub Actions, so the repo can stay public without leaking premium assets.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <a href="https://ssbforge.in" target="_blank" class="btn btn-primary">
+            Visit SSBForge.in <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT 1: AI/LLM PII Redaction (flagship) -->
+      <div class="card p-8 rounded-2xl border-l-4 border-amber">
+        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+          <h4 class="text-2xl md:text-3xl font-display font-bold text-amber">Deterministic AI/LLM PII Redaction Pipeline</h4>
+          <span class="tag flex items-center gap-1.5"><i data-lucide="lock" class="w-3.5 h-3.5"></i> Private — built at HCLTech</span>
+        </div>
+        <p class="text-[#93A1BD] text-lg mb-6">
+          A hybrid rule-based + LLM pipeline that scrubs PII, profanity, and sensitive content from
+          text at scale — replacing a manual review step for a 7-person team.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div>
+            <h5 class="font-mono text-xs uppercase tracking-wide text-[#5C6B85] mb-3">Technologies</h5>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">Python</span>
+              <span class="tag">LangChain</span>
+              <span class="tag">OpenAI API / Ollama</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Regex Rule Engine</span>
+            </div>
+          </div>
+          <div class="md:col-span-2">
+            <h5 class="font-mono text-xs uppercase tracking-wide text-[#5C6B85] mb-3">Key Highlights</h5>
+            <ul class="space-y-1.5 text-[#93A1BD]">
+              <li>• Combined deterministic rule-matching with LLM judgment to reach 99% scrub accuracy.</li>
+              <li>• Removed a fully manual review step, freeing a 7-person team for higher-value work.</li>
+              <li>• Built to be deterministic by design — identical input always yields identical redactions, which matters for compliance.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="diagram-card"><svg viewBox="0 0 880 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: raw text flows through a rule engine and LLM verifier into scrubbed output, with an audit log branch">
+<defs><marker id="arrow-pii" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/>
+</marker></defs>
+<rect x="10" y="95" width="150" height="70" rx="10" class="dg-box"/>
+<text x="85.0" y="83" text-anchor="middle" class="dg-tag">SOURCE</text>
+<text x="85.0" y="127.0" text-anchor="middle" class="dg-title">Raw Text Input</text>
+<text x="85.0" y="144.0" text-anchor="middle" class="dg-sub">Unstructured docs</text>
+
+<rect x="205" y="95" width="170" height="70" rx="10" class="dg-box dg-box-teal"/>
+<text x="290.0" y="83" text-anchor="middle" class="dg-tag">DETERMINISTIC</text>
+<text x="290.0" y="127.0" text-anchor="middle" class="dg-title">Rule Engine</text>
+<text x="290.0" y="144.0" text-anchor="middle" class="dg-sub">Regex · PII patterns</text>
+
+<rect x="420" y="95" width="220" height="70" rx="10" class="dg-box dg-box-amber"/>
+<text x="530.0" y="83" text-anchor="middle" class="dg-tag">AI VERIFICATION</text>
+<text x="530.0" y="127.0" text-anchor="middle" class="dg-title">LLM Verifier</text>
+<text x="530.0" y="144.0" text-anchor="middle" class="dg-sub">LangChain + OpenAI / Ollama</text>
+
+<rect x="685" y="95" width="185" height="70" rx="10" class="dg-box dg-box-teal"/>
+<text x="777.5" y="83" text-anchor="middle" class="dg-tag">OUTPUT</text>
+<text x="777.5" y="127.0" text-anchor="middle" class="dg-title">Scrubbed Output</text>
+<text x="777.5" y="144.0" text-anchor="middle" class="dg-sub">99% redaction accuracy</text>
+
+<rect x="455" y="205" width="150" height="50" rx="10" class="dg-box"/>
+<text x="530.0" y="227.0" text-anchor="middle" class="dg-title">Audit Log</text>
+<text x="530.0" y="244.0" text-anchor="middle" class="dg-sub">Compliance trail</text>
+
+<path d="M160,130.0 H205" class="dg-arrow" marker-end="url(#arrow-pii)"/>
+
+<path d="M375,130.0 H420" class="dg-arrow" marker-end="url(#arrow-pii)"/>
+
+<path d="M640,130.0 H685" class="dg-arrow" marker-end="url(#arrow-pii)"/>
+
+<path d="M530.0,165 V205" class="dg-arrow" marker-end="url(#arrow-pii)"/>
+
+</svg></div>
+        <p class="diagram-scroll-hint">&larr; swipe to see the full pipeline &rarr;</p>
+      </div>
+
+      <!-- PROJECT 2: Interactive BI Dashboard -->
+      <div class="card p-8 rounded-2xl border-l-4 border-teal">
+        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+          <h4 class="text-2xl md:text-3xl font-display font-bold text-teal">Interactive BI Dashboard — Crimes in India</h4>
+          <span class="tag flex items-center gap-1.5"><i data-lucide="globe" class="w-3.5 h-3.5"></i> Live demo</span>
+        </div>
+        <p class="text-[#93A1BD] text-lg mb-6">
+          A live business-intelligence report, fed by an automated GCP + Python pipeline,
+          surfacing actionable insight into NCRB crime data (2020–2022).
+        </p>
+
+        <div class="browser-frame mb-6">
+          <div class="chrome">
+            <span class="console-dot" style="background:#F2618C; width:9px; height:9px;"></span>
+            <span class="console-dot" style="background:#F2A93B; width:9px; height:9px;"></span>
+            <span class="console-dot" style="background:#5FD08A; width:9px; height:9px;"></span>
+            <span class="url">lookerstudio.google.com/reporting/d1531916…</span>
+          </div>
+          <img src="Pictures/image_fb3b44.jpg" alt="Screenshot of a Looker Studio dashboard analyzing crime data across Indian states, 2020-2022" loading="lazy">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div>
+            <h5 class="font-mono text-xs uppercase tracking-wide text-[#5C6B85] mb-3">Technologies</h5>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">Google Looker Studio</span>
+              <span class="tag">GCP BigQuery</span>
+              <span class="tag">Python Data Pipeline</span>
+              <span class="tag">Looker API</span>
+            </div>
+          </div>
+          <div class="md:col-span-2">
+            <h5 class="font-mono text-xs uppercase tracking-wide text-[#5C6B85] mb-3">Key Highlights</h5>
+            <ul class="space-y-1.5 text-[#93A1BD]">
+              <li>• Connects directly to GCP BigQuery through an automated data pipeline.</li>
+              <li>• Built to shorten the path from raw data to a stakeholder decision.</li>
+              <li>• Demonstrates end-to-end ELT/BI delivery, from source to visualization.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <a href="https://lookerstudio.google.com/reporting/d1531916-abb9-4b6d-ba63-aff9a4465eda" target="_blank" class="btn btn-primary">
+            View Live Dashboard <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT 3: Client Data Automation -->
+      <div class="card p-8 rounded-2xl border-l-4 border-amber">
+        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+          <h4 class="text-2xl md:text-3xl font-display font-bold text-amber">Client Data Automation Solutions</h4>
+          <span class="tag flex items-center gap-1.5"><i data-lucide="lock" class="w-3.5 h-3.5"></i> Private — built at HCLTech</span>
+        </div>
+        <p class="text-[#93A1BD] text-lg mb-6">Automated enterprise reporting pipelines, deployed end-to-end on GCP.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div>
+            <h5 class="font-mono text-xs uppercase tracking-wide text-[#5C6B85] mb-3">Technologies</h5>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">GCP (Cloud Run, BigQuery)</span>
+              <span class="tag">Terraform (IaC)</span>
+              <span class="tag">Python</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">FastAPI</span>
+            </div>
+          </div>
+          <div class="md:col-span-2">
+            <h5 class="font-mono text-xs uppercase tracking-wide text-[#5C6B85] mb-3">Key Highlights</h5>
+            <ul class="space-y-1.5 text-[#93A1BD]">
+              <li>• Streamlined the data flow from SharePoint → BigQuery → Power BI, cutting manual reporting by 35%.</li>
+              <li>• Designed CI/CD for Cloud Run functions, cutting deployment time by 60%.</li>
+              <li>• Automated the data-freeze process, taking it from 4 hours down to 30 minutes.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="diagram-card"><svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: SharePoint source flows through Cloud Run ETL, branching to CI/CD and Terraform, into BigQuery and then Power BI/Looker">
+<defs><marker id="arrow-bq" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/>
+</marker></defs>
+<rect x="10" y="133" width="150" height="64" rx="10" class="dg-box"/>
+<text x="85.0" y="121" text-anchor="middle" class="dg-tag">SOURCE</text>
+<text x="85.0" y="162.0" text-anchor="middle" class="dg-title">SharePoint API</text>
+<text x="85.0" y="179.0" text-anchor="middle" class="dg-sub">Source system</text>
+
+<rect x="200" y="133" width="170" height="64" rx="10" class="dg-box dg-box-amber"/>
+<text x="285.0" y="121" text-anchor="middle" class="dg-tag">COMPUTE</text>
+<text x="285.0" y="162.0" text-anchor="middle" class="dg-title">Cloud Run</text>
+<text x="285.0" y="179.0" text-anchor="middle" class="dg-sub">Python ETL service</text>
+
+<rect x="200" y="34" width="170" height="56" rx="10" class="dg-box dg-box-teal"/>
+<text x="285.0" y="22" text-anchor="middle" class="dg-tag">CI / CD</text>
+<text x="285.0" y="59.0" text-anchor="middle" class="dg-title">Cloud Build</text>
+<text x="285.0" y="76.0" text-anchor="middle" class="dg-sub">Artifact Registry / CI/CD</text>
+
+<rect x="200" y="230" width="170" height="56" rx="10" class="dg-box dg-box-teal"/>
+<text x="285.0" y="218" text-anchor="middle" class="dg-tag">INFRA</text>
+<text x="285.0" y="255.0" text-anchor="middle" class="dg-title">Terraform</text>
+<text x="285.0" y="272.0" text-anchor="middle" class="dg-sub">IaC · disaster recovery</text>
+
+<rect x="410" y="133" width="190" height="64" rx="10" class="dg-box dg-box-amber"/>
+<text x="505.0" y="121" text-anchor="middle" class="dg-tag">WAREHOUSE</text>
+<text x="505.0" y="162.0" text-anchor="middle" class="dg-title">BigQuery</text>
+<text x="505.0" y="179.0" text-anchor="middle" class="dg-sub">Staging → final tables</text>
+
+<rect x="650" y="133" width="190" height="64" rx="10" class="dg-box"/>
+<text x="745.0" y="121" text-anchor="middle" class="dg-tag">BI LAYER</text>
+<text x="745.0" y="162.0" text-anchor="middle" class="dg-title">Power BI / Looker</text>
+<text x="745.0" y="179.0" text-anchor="middle" class="dg-sub">BI consumption layer</text>
+
+<path d="M160,165.0 H200" class="dg-arrow" marker-end="url(#arrow-bq)"/>
+
+<path d="M285.0,133 V90" class="dg-arrow" marker-end="url(#arrow-bq)"/>
+
+<path d="M285.0,197 V230" class="dg-arrow" marker-end="url(#arrow-bq)"/>
+
+<path d="M370,165.0 H410" class="dg-arrow" marker-end="url(#arrow-bq)"/>
+
+<path d="M600,165.0 H650" class="dg-arrow" marker-end="url(#arrow-bq)"/>
+
+</svg></div>
+        <p class="diagram-scroll-hint">&larr; swipe to see the full pipeline &rarr;</p>
+      </div>
+
+      <!-- PROJECT 4: UK Gov ETL -->
+      <div class="card p-8 rounded-2xl border-l-4 border-teal">
+        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+          <h4 class="text-2xl md:text-3xl font-display font-bold text-teal">Automated UK Government Data ETL</h4>
+          <span class="tag flex items-center gap-1.5"><i data-lucide="lock" class="w-3.5 h-3.5"></i> Private — built at Blackcoffer</span>
+        </div>
+        <p class="text-[#93A1BD] text-lg mb-6">An ETL tool that ingests and refines large public datasets for a client-facing web application.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div>
+            <h5 class="font-mono text-xs uppercase tracking-wide text-[#5C6B85] mb-3">Technologies</h5>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">Python (Pandas)</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Data Mining Scripts</span>
+            </div>
+          </div>
+          <div class="md:col-span-2">
+            <h5 class="font-mono text-xs uppercase tracking-wide text-[#5C6B85] mb-3">Key Highlights</h5>
+            <ul class="space-y-1.5 text-[#93A1BD]">
+              <li>• Mines large datasets from multiple UK government sources.</li>
+              <li>• Refines and structures data for loading into PostgreSQL behind a client-facing app.</li>
+              <li>• Keeps stakeholder reporting close to real time.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="diagram-card"><svg viewBox="0 0 900 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: UK government data sources flow through a Python ETL script with a cron scheduler, into PostgreSQL, then a client web app">
+<defs><marker id="arrow-etl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/>
+</marker></defs>
+<rect x="10" y="93" width="180" height="64" rx="10" class="dg-box"/>
+<text x="100.0" y="81" text-anchor="middle" class="dg-tag">SOURCE</text>
+<text x="100.0" y="122.0" text-anchor="middle" class="dg-title">UK Gov Data</text>
+<text x="100.0" y="139.0" text-anchor="middle" class="dg-sub">APIs / files</text>
+
+<rect x="245" y="93" width="190" height="64" rx="10" class="dg-box dg-box-amber"/>
+<text x="340.0" y="81" text-anchor="middle" class="dg-tag">TRANSFORM</text>
+<text x="340.0" y="122.0" text-anchor="middle" class="dg-title">Python ETL Script</text>
+<text x="340.0" y="139.0" text-anchor="middle" class="dg-sub">Mine · clean · validate</text>
+
+<rect x="260" y="198" width="160" height="50" rx="10" class="dg-box dg-box-teal"/>
+<text x="340.0" y="186" text-anchor="middle" class="dg-tag">SCHEDULE</text>
+<text x="340.0" y="220.0" text-anchor="middle" class="dg-title">Cron Scheduler</text>
+<text x="340.0" y="237.0" text-anchor="middle" class="dg-sub">Orchestration</text>
+
+<rect x="495" y="93" width="170" height="64" rx="10" class="dg-box dg-box-teal"/>
+<text x="580.0" y="81" text-anchor="middle" class="dg-tag">STORAGE</text>
+<text x="580.0" y="122.0" text-anchor="middle" class="dg-title">PostgreSQL</text>
+<text x="580.0" y="139.0" text-anchor="middle" class="dg-sub">Schema + final tables</text>
+
+<rect x="720" y="93" width="170" height="64" rx="10" class="dg-box"/>
+<text x="805.0" y="81" text-anchor="middle" class="dg-tag">CONSUMPTION</text>
+<text x="805.0" y="122.0" text-anchor="middle" class="dg-title">Client Web App</text>
+<text x="805.0" y="139.0" text-anchor="middle" class="dg-sub">Reads live data</text>
+
+<path d="M190,125.0 H245" class="dg-arrow" marker-end="url(#arrow-etl)"/>
+
+<path d="M340.0,157 V198" class="dg-arrow" marker-end="url(#arrow-etl)"/>
+
+<path d="M435,125.0 H495" class="dg-arrow" marker-end="url(#arrow-etl)"/>
+
+<path d="M665,125.0 H720" class="dg-arrow" marker-end="url(#arrow-etl)"/>
+
+</svg></div>
+        <p class="diagram-scroll-hint">&larr; swipe to see the full pipeline &rarr;</p>
+      </div>
+
+      <!-- PROJECT 5: Sentiment Analysis -->
+      <div class="card p-8 rounded-2xl border-l-4 border-amber">
+        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+          <h4 class="text-2xl md:text-3xl font-display font-bold text-amber">Content Sentiment Analysis Pipeline</h4>
+          <span class="tag flex items-center gap-1.5"><i data-lucide="lock" class="w-3.5 h-3.5"></i> Private — built at Blackcoffer</span>
+        </div>
+        <p class="text-[#93A1BD] text-lg mb-6">An automated script that scores sentiment across 200+ scraped websites.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div>
+            <h5 class="font-mono text-xs uppercase tracking-wide text-[#5C6B85] mb-3">Technologies</h5>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">Python</span>
+              <span class="tag">BeautifulSoup</span>
+              <span class="tag">Selenium</span>
+              <span class="tag">NLP</span>
+            </div>
+          </div>
+          <div class="md:col-span-2">
+            <h5 class="font-mono text-xs uppercase tracking-wide text-[#5C6B85] mb-3">Key Highlights</h5>
+            <ul class="space-y-1.5 text-[#93A1BD]">
+              <li>• Scrapes content from 200+ sources on an automated schedule.</li>
+              <li>• Applies NLP scoring to calculate sentiment per source.</li>
+              <li>• Feeds a continuous pipeline for trend analysis and content strategy.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="diagram-card"><svg viewBox="0 0 900 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: an Excel file of URLs feeds a Python pipeline that scrapes, cleans, and scores sentiment, producing an averaged output">
+<defs><marker id="arrow-scrape" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/>
+</marker></defs>
+<rect x="10" y="130" width="160" height="70" rx="10" class="dg-box"/>
+<text x="90.0" y="118" text-anchor="middle" class="dg-tag">SOURCE</text>
+<text x="90.0" y="162.0" text-anchor="middle" class="dg-title">Excel File</text>
+<text x="90.0" y="179.0" text-anchor="middle" class="dg-sub">List of target URLs</text>
+
+<rect x="270" y="40" width="370" height="200" rx="12" class="dg-box dg-box-amber"/>
+<text x="455.0" y="28" text-anchor="middle" class="dg-tag">PROCESS</text>
+<text x="455.0" y="60" text-anchor="middle" class="dg-title">Python Pipeline</text>
+<rect x="300" y="80" width="310" height="44" rx="10" class="dg-box dg-box-teal"/>
+<text x="455.0" y="99.0" text-anchor="middle" class="dg-title">1. Scrape</text>
+<text x="455.0" y="116.0" text-anchor="middle" class="dg-sub">BeautifulSoup / Selenium</text>
+
+<rect x="300" y="134" width="310" height="44" rx="10" class="dg-box dg-box-teal"/>
+<text x="455.0" y="153.0" text-anchor="middle" class="dg-title">2. Clean Text</text>
+<text x="455.0" y="170.0" text-anchor="middle" class="dg-sub">Strip markup, normalize</text>
+
+<rect x="300" y="188" width="310" height="44" rx="10" class="dg-box dg-box-teal"/>
+<text x="455.0" y="207.0" text-anchor="middle" class="dg-title">3. Score Sentiment</text>
+<text x="455.0" y="224.0" text-anchor="middle" class="dg-sub">NLP polarity scoring</text>
+
+<path d="M455.0,124 V134" class="dg-arrow" marker-end="url(#arrow-scrape)"/>
+
+<path d="M455.0,178 V188" class="dg-arrow" marker-end="url(#arrow-scrape)"/>
+
+<rect x="720" y="130" width="170" height="70" rx="10" class="dg-box"/>
+<text x="805.0" y="118" text-anchor="middle" class="dg-tag">OUTPUT</text>
+<text x="805.0" y="162.0" text-anchor="middle" class="dg-title">Output</text>
+<text x="805.0" y="179.0" text-anchor="middle" class="dg-sub">Saved & displayed score</text>
+
+<path d="M170,165.0 H270" class="dg-arrow" marker-end="url(#arrow-scrape)"/>
+
+<path d="M640,140.0 H720" class="dg-arrow" marker-end="url(#arrow-scrape)"/>
+
+</svg></div>
+        <p class="diagram-scroll-hint">&larr; swipe to see the full pipeline &rarr;</p>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="portfolio-gallery.html" class="btn btn-outline">
+        <i data-lucide="layers" class="w-5 h-5"></i> See architecture deep-dives &amp; code walkthroughs
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT / SINK ============ -->
+  <section id="contact" data-stage-section class="py-16 border-t border-line mb-6 reveal">
+    <span class="eyebrow mb-4 justify-center w-full">Stage 05 // Sink</span>
+    <h3 class="font-display text-3xl md:text-4xl font-bold mb-4 text-center">Let's ship something</h3>
+    <p class="text-center text-[#93A1BD] text-lg mb-10 max-w-xl mx-auto">
+      I'm currently a Software Engineer at HCLTech, and always open to conversations about
+      Data Engineering, Cloud Architecture, or applied GenAI roles. Feel free to reach out.
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="mailto:sparshv2325@gmail.com" class="card card-hover p-4 rounded-xl flex items-center space-x-2 text-base">
+        <i data-lucide="mail" class="w-5 h-5 text-rose"></i><span>Email</span>
+      </a>
+      <a href="https://github.com/smariangit" target="_blank" class="card card-hover p-4 rounded-xl flex items-center space-x-2 text-base">
+        <svg viewBox="0 0 16 16" class="w-5 h-5 text-[#EDF1F7]" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8Z"/></svg><span>GitHub</span>
+      </a>
+      <a href="#" target="_blank" class="card card-hover p-4 rounded-xl flex items-center space-x-2 text-base">
+        <svg viewBox="0 0 24 24" class="w-5 h-5 text-teal" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg><span>LinkedIn</span>
+      </a>
+      <a href="assets/Resume.pdf" target="_blank" class="card card-hover p-4 rounded-xl flex items-center space-x-2 text-base">
+        <i data-lucide="file-text" class="w-5 h-5 text-amber"></i><span>Résumé</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="border-t border-line py-8">
+  <div class="max-w-7xl mx-auto px-4 text-center text-sm text-[#5C6B85] font-mono">
+    <p>© 2026 Sparsh Verma — Data Engineering Portfolio.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
 </body>
 </html>

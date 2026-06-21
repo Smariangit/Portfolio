@@ -1,264 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sparsh Verma | Project Gallery & Code Deep Dives</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        /* Synced Custom styles for a technical, modern look (Theme from index.html) */
-        :root {
-            --primary-color: #06b6d4; /* Cyan 500 */
-            --bg-color: #0f172a; /* Slate 900 */
-            --card-color: #1e293b; /* Slate 800 */
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: #f1f5f9; /* Slate 100 */
-            scroll-behavior: smooth;
-        }
-        .text-accent {
-            color: var(--primary-color);
-        }
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #0891b2; /* Cyan 600 */
-            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
-        }
-        .card {
-            background-color: var(--card-color);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-        .tech-tag {
-            background-color: #334155; /* Slate 700 */
-            color: #cbd5e1; /* Slate 300 */
-            border: 1px solid #475569; /* Slate 600 */
-        }
-        /* Gallery Specific Styles */
-        .gallery-container {
-            overflow: hidden;
-            border-radius: 1rem;
-            position: relative;
-        }
-        .slideshow {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .slide {
-            min-width: 100%;
-            flex-shrink: 0;
-        }
-        /* Code Block Styling for Deep Dive */
-        .code-block {
-            background-color: #1e293b; /* Slate 800 */
-            color: #e2e8f0; /* Slate 200 */
-            border-left: 4px solid var(--primary-color);
-            padding: 1rem;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.875rem;
-            overflow-x: auto;
-        }
-        .code-comment {
-            color: #94a3b8; /* Slate 400 */
-        }
-        .code-keyword {
-            color: #f87171; /* Red 400 */
-        }
-        .code-string {
-            color: #a7f3d0; /* Emerald 200 */
-        }
-        .code-function {
-            color: #60a5fa; /* Blue 400 */
-        }
-        .code-variable {
-             color: #fcd34d; /* Amber 300 */
-        }
-    </style>
-    <script>
-        let currentSlide = 0;
-        const totalSlides = 3; 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sparsh Verma | Project Gallery & Code Deep Dives</title>
+<meta name="description" content="Architecture deep-dives and code walkthroughs behind Sparsh Verma's data engineering projects.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-        function moveSlide(direction) {
-            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-            updateSlideshow();
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-        function updateSlideshow() {
-            const slideshow = document.getElementById('slideshow');
-            if (slideshow) {
-                const offset = -currentSlide * 100;
-                slideshow.style.transform = `translateX(${offset}%)`;
-            }
-            updateDots();
-        }
-
-        function goToSlide(n) {
-            currentSlide = n;
-            updateSlideshow();
-        }
-        
-        function updateDots() {
-            const dots = document.querySelectorAll('.slide-dot');
-            dots.forEach((dot, index) => {
-                if (index === currentSlide) {
-                    dot.classList.add('bg-accent');
-                    dot.classList.remove('bg-slate-500');
-                } else {
-                    dot.classList.add('bg-slate-500');
-                    dot.classList.remove('bg-accent');
-                }
-            });
-        }
-        
-        // --- Initialization ---
-        window.onload = function() {
-            lucide.createIcons();
-            // Start slideshow on load
-            updateSlideshow();
-        }
-
-        // Simple navigation logic
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#0A0F1C',
+          elevated: '#121B2D',
+          elevated2: '#172338',
+          line: '#24314c',
+          amber: { DEFAULT: '#F2A93B', dim: '#c98f33' },
+          teal: { DEFAULT: '#3FDFC9' },
+          rose: '#F2618C',
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+<link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="antialiased">
+<body class="antialiased font-body bg-ink text-[#EDF1F7]">
 
-    <!-- Navbar (Fixed Header) - SYNCED -->
-    <header class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-sm shadow-lg">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold tracking-tight">
-                <a href="index.html" class="text-accent hover:text-white transition duration-200">Sparsh.DE</a>
-            </div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="index.html#skills" class="hover:text-accent cursor-pointer transition duration-200">Skills</a>
-                <a href="index.html#experience" class="hover:text-accent cursor-pointer transition duration-200">Experience</a>
-                <a href="index.html#projects" class="hover:text-accent cursor-pointer transition duration-200">Summary</a>
-                <a href="#code-deep-dives" class="hover:text-accent cursor-pointer transition duration-200">Code Deep Dive</a>
-            </div>
-            <a href="index.html" class="md:hidden p-2 rounded-full text-accent hover:bg-slate-800 transition">
-                <i data-lucide="home" class="w-6 h-6"></i>
-            </a>
-        </nav>
-    </header>
+<!-- ============ HEADER ============ -->
+<header class="site-header sticky top-0 z-50">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+    <a href="index.html" class="font-display text-xl font-bold tracking-tight text-[#EDF1F7]">
+      sparsh<span class="text-amber">.</span>dev<span class="logo-cursor" aria-hidden="true"></span>
+    </a>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="hidden md:flex items-center space-x-8 text-sm font-medium font-body">
+      <a href="index.html#about" class="nav-link">About</a>
+      <a href="index.html#skills" class="nav-link">Skills</a>
+      <a href="index.html#experience" class="nav-link">Experience</a>
+      <a href="index.html#projects" class="nav-link">Projects</a>
+      <a href="portfolio-gallery.html" class="nav-link is-active">Gallery</a>
+      <a href="index.html#contact" class="nav-link">Contact</a>
+    </div>
 
-        <!-- Header for Page 2 -->
-        <section class="py-20 md:py-24 text-center border-b border-slate-700">
-            <h1 class="text-5xl md:text-6xl font-extrabold mb-4 tracking-tighter">
-                Project <span class="text-accent">Gallery</span>
-            </h1>
-            <h2 class="text-xl md:text-2xl text-slate-300 font-light max-w-3xl mx-auto">
-                Interactive dashboards and architectural deep-dives demonstrating end-to-end Data Engineering capabilities.
-            </h2>
-        </section>
+    <div class="hidden md:block">
+      <a href="assets/Resume.pdf" target="_blank" class="btn btn-outline !py-2 !px-4 text-sm">
+        <i data-lucide="file-text" class="w-4 h-4"></i> Résumé
+      </a>
+    </div>
 
-        <!-- 1. Dashboard Gallery Slideshow -->
-        <section id="dashboard-gallery" class="py-16">
-            <h3 class="text-4xl font-bold mb-10 text-center">Interactive Dashboards</h3>
-            
-            <div class="card p-4 md:p-8 gallery-container">
-                <div id="slideshow" class="slideshow">
+    <button id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg text-[#EDF1F7] hover:bg-elevated transition">
+      <i data-lucide="menu" class="w-6 h-6" data-icon-open></i>
+      <i data-lucide="x" class="w-6 h-6 hidden" data-icon-close></i>
+    </button>
+  </nav>
 
-                    <!-- Slide 1: Crimes in India Dashboard (Provided) -->
-                    <div class="slide p-4">
-                        <div class="text-center mb-6">
-                            <h4 class="text-2xl font-bold text-fuchsia-400 mb-2">Crimes in India BI Report</h4>
-                            <p class="text-slate-400">Analysis of NCRB data on age group and region, facilitated by a GCP pipeline.</p>
-                        </div>
-                        <!-- IMPORTANT: Assumes image is in the Pictures folder -->
-                        <img src="Pictures/image_fb3b44.jpg" alt="Crimes in India Dashboard Screenshot" class="w-full max-w-4xl mx-auto rounded-xl shadow-2xl border border-slate-700">
-                        <div class="flex justify-center mt-6">
-                            <a href="https://lookerstudio.google.com/reporting/d1531916-abb9-4b6d-ba63-aff9a4465eda" target="_blank" class="btn-primary px-6 py-3 rounded-xl font-semibold flex items-center">
-                                View Live Dashboard <i data-lucide="external-link" class="w-5 h-5 ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
+  <div id="mobile-menu" class="md:hidden border-t border-line">
+    <div class="px-4 sm:px-6 py-4 flex flex-col space-y-3 font-body text-base">
+      <a href="index.html#about" class="nav-link py-1.5">About</a>
+      <a href="index.html#skills" class="nav-link py-1.5">Skills</a>
+      <a href="index.html#experience" class="nav-link py-1.5">Experience</a>
+      <a href="index.html#projects" class="nav-link py-1.5">Projects</a>
+      <a href="portfolio-gallery.html" class="nav-link py-1.5 is-active">Gallery</a>
+      <a href="index.html#contact" class="nav-link py-1.5">Contact</a>
+      <a href="assets/Resume.pdf" target="_blank" class="btn btn-primary !py-2.5 mt-2 justify-center">
+        <i data-lucide="file-text" class="w-4 h-4"></i> Download Résumé
+      </a>
+    </div>
+  </div>
+</header>
 
-                    <!-- Slide 2: Placeholder for a second dashboard (e.g., from Blackcoffer) -->
-                    <div class="slide p-4">
-                        <div class="text-center mb-6">
-                            <h4 class="text-2xl font-bold text-fuchsia-400 mb-2">Client Business Performance Dashboard</h4>
-                            <p class="text-slate-400">Power BI visualization showing key metrics and performance trends (HCLTech/Blackcoffer).</p>
-                        </div>
-                        <!-- Placeholder image for visual consistency -->
-                        <img src="https://placehold.co/1024x576/1e293b/a7f3d0?text=Power+BI+Dashboard+2" alt="Power BI Dashboard Placeholder" class="w-full max-w-4xl mx-auto rounded-xl shadow-2xl border border-slate-700">
-                        <div class="flex justify-center mt-6">
-                             <a href="#" target="_blank" class="bg-slate-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center hover:bg-slate-600 transition">
-                                Dashboard Link Pending <i data-lucide="lock" class="w-5 h-5 ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                    <!-- Slide 3: Placeholder for a third dashboard (e.g., Sentiment Analysis Result) -->
-                    <div class="slide p-4">
-                        <div class="text-center mb-6">
-                            <h4 class="text-2xl font-bold text-fuchsia-400 mb-2">Sentiment Analysis Results</h4>
-                            <p class="text-slate-400">Visualization of sentiment scores across 200+ scraped websites.</p>
-                        </div>
-                        <!-- Placeholder image for visual consistency -->
-                        <img src="https://placehold.co/1024x576/1e293b/60a5fa?text=Sentiment+Analysis+Dashboard+3" alt="Sentiment Analysis Dashboard Placeholder" class="w-full max-w-4xl mx-auto rounded-xl shadow-2xl border border-slate-700">
-                         <div class="flex justify-center mt-6">
-                            <a href="#" target="_blank" class="bg-slate-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center hover:bg-slate-600 transition">
-                                Dashboard Link Pending <i data-lucide="lock" class="w-5 h-5 ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
+  <!-- ============ PAGE HEADER ============ -->
+  <section class="py-16 md:py-20 text-center border-b border-line reveal">
+    <span class="eyebrow mb-4 justify-center w-full">Under the hood</span>
+    <h1 class="font-display text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+      Project <span class="text-amber">Gallery</span>
+    </h1>
+    <h2 class="text-lg md:text-xl text-[#93A1BD] font-normal max-w-2xl mx-auto">
+      A closer look at the dashboard in production and the code &amp; architecture
+      behind four of the pipelines on the <a href="index.html#projects" class="text-teal hover:underline">Projects page</a>.
+    </h2>
+  </section>
 
-                </div>
-                
-                <!-- Navigation Arrows -->
-                <button onclick="moveSlide(-1)" class="absolute top-1/2 left-4 transform -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/75 transition z-10 text-white">
-                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
-                </button>
-                <button onclick="moveSlide(1)" class="absolute top-1/2 right-4 transform -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/75 transition z-10 text-white">
-                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
-                </button>
-                
-                <!-- Dots Indicator -->
-                <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
-                    <button class="slide-dot w-3 h-3 rounded-full bg-slate-500 transition-colors" onclick="goToSlide(0)"></button>
-                    <button class="slide-dot w-3 h-3 rounded-full bg-slate-500 transition-colors" onclick="goToSlide(1)"></button>
-                    <button class="slide-dot w-3 h-3 rounded-full bg-slate-500 transition-colors" onclick="goToSlide(2)"></button>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 2. Code Deep Dive Section -->
-        <section id="code-deep-dives" class="py-16 border-t border-slate-700">
-            <h3 class="text-4xl font-bold mb-10 text-center">Code Deep Dives: Architecture & Logic</h3>
-            <p class="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
-                A look under the hood at the critical code components for ETL, FastAPI services, and infrastructure-as-Code.
-            </p>
+  <!-- ============ FEATURED DASHBOARD ============ -->
+  <section id="dashboard" class="py-16 reveal">
+    <span class="eyebrow mb-4">Live in production</span>
+    <h3 class="font-display text-3xl md:text-4xl font-bold mb-4">Featured Dashboard</h3>
+    <p class="text-[#93A1BD] text-lg mb-10 max-w-2xl">
+      A Looker Studio report fed entirely by an automated GCP + Python pipeline —
+      no manual refresh, no copy-pasted exports.
+    </p>
 
-            <div class="space-y-16">
-                
-                <!-- DEEP DIVE 1: ETL Pipeline Logic (Python) - Project 3 -->
-                <div class="card p-8 rounded-2xl border-l-4 border-cyan-500">
-                    <h4 class="text-3xl font-bold text-accent mb-4">ETL Transformation Logic (Python)</h4>
-                    <p class="text-slate-400 mb-6">Snippet of the Python function responsible for cleaning and refining UK government datasets before loading to PostgreSQL (Project 3).</p>
-                    
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <h5 class="text-xl font-semibold text-slate-300 mb-3 flex items-center"><i data-lucide="cpu" class="w-5 h-5 mr-2 text-cyan-400"></i> Core Transformation Function</h5>
-                            <pre class="code-block h-64">
-<span class="code-comment"># Function to standardize currency and date formats</span>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2">
+        <div class="browser-frame">
+          <div class="chrome">
+            <span class="console-dot" style="background:#F2618C; width:9px; height:9px;"></span>
+            <span class="console-dot" style="background:#F2A93B; width:9px; height:9px;"></span>
+            <span class="console-dot" style="background:#5FD08A; width:9px; height:9px;"></span>
+            <span class="url">lookerstudio.google.com/reporting/d1531916…</span>
+          </div>
+          <img src="Pictures/image_fb3b44.jpg" alt="Screenshot of a Looker Studio dashboard analyzing crime data across Indian states, 2020-2022" loading="lazy">
+        </div>
+      </div>
+
+      <div class="card p-6 rounded-2xl">
+        <h4 class="font-display text-lg font-semibold mb-4">Crimes in India BI Report</h4>
+        <p class="text-[#93A1BD] mb-5">
+          Built on NCRB data, broken down by region and age group, refreshed automatically
+          through a GCP pipeline rather than a manual export.
+        </p>
+        <ul class="space-y-2.5 text-[#93A1BD] text-sm mb-6">
+          <li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-teal mt-0.5 shrink-0"></i> Sources directly from BigQuery</li>
+          <li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-teal mt-0.5 shrink-0"></i> State &amp; age-group breakdowns</li>
+          <li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-teal mt-0.5 shrink-0"></i> Geo map of regional crime density</li>
+        </ul>
+        <a href="https://lookerstudio.google.com/reporting/d1531916-abb9-4b6d-ba63-aff9a4465eda" target="_blank" class="btn btn-primary w-full justify-center">
+          View Live Dashboard <i data-lucide="external-link" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CODE DEEP DIVES ============ -->
+  <section id="code-deep-dives" class="py-16 border-t border-line reveal">
+    <span class="eyebrow mb-4">Implementation notes</span>
+    <h3 class="font-display text-3xl md:text-4xl font-bold mb-4">Code Deep Dives: Architecture &amp; Logic</h3>
+    <p class="text-[#93A1BD] text-lg mb-12 max-w-2xl">
+      Illustrative snippets reconstructing the core logic behind four pipelines from the
+      <a href="index.html#projects" class="text-teal hover:underline">Projects page</a> — simplified for
+      readability, since the originals are proprietary to their respective employers.
+    </p>
+
+    <div class="space-y-16">
+
+      <!-- DEEP DIVE 1: AI/LLM PII Redaction -->
+      <div class="card p-8 rounded-2xl border-l-4 border-amber">
+        <h4 class="text-2xl md:text-3xl font-display font-bold text-amber mb-2">AI/LLM PII Redaction Logic</h4>
+        <p class="text-[#93A1BD] mb-6">Hybrid rule-based + LLM verification pass used to scrub PII before content ships (Project 1).</p>
+
+        <div class="space-y-6 mb-8">
+          <div>
+            <h5 class="text-lg font-display font-semibold mb-3 flex items-center gap-2"><i data-lucide="shield-check" class="w-5 h-5 text-amber"></i> Redaction Pass</h5>
+            <pre class="code-block"><span class="code-comment"># pii_redaction.py — hybrid rule + LLM redaction pass</span>
+<span class="code-keyword">import</span> re
+<span class="code-keyword">from</span> langchain.chat_models <span class="code-keyword">import</span> ChatOpenAI
+
+<span class="code-variable">RULES</span> = [
+    (re.<span class="code-function">compile</span>(<span class="code-string">r"\b\d{10}\b"</span>), <span class="code-string">"[PHONE]"</span>),
+    (re.<span class="code-function">compile</span>(<span class="code-string">r"[\w.+-]+@[\w-]+\.[\w.-]+"</span>), <span class="code-string">"[EMAIL]"</span>),
+]
+
+<span class="code-variable">llm</span> = <span class="code-function">ChatOpenAI</span>(model=<span class="code-string">"gpt-4o-mini"</span>, temperature=<span class="code-variable">0</span>)
+
+<span class="code-keyword">def</span> <span class="code-function">rule_pass</span>(<span class="code-variable">text</span>: str) -> str:
+    <span class="code-keyword">for</span> pattern, tag <span class="code-keyword">in</span> <span class="code-variable">RULES</span>:
+        <span class="code-variable">text</span> = pattern.<span class="code-function">sub</span>(tag, <span class="code-variable">text</span>)
+    <span class="code-keyword">return</span> <span class="code-variable">text</span>
+
+<span class="code-keyword">def</span> <span class="code-function">llm_verify</span>(<span class="code-variable">text</span>: str) -> str:
+    <span class="code-comment"># catches what the rules miss — names, addresses, context-only PII</span>
+    <span class="code-variable">prompt</span> = <span class="code-string">f"Redact any remaining PII in:\n{text}"</span>
+    <span class="code-keyword">return</span> <span class="code-variable">llm</span>.<span class="code-function">invoke</span>(<span class="code-variable">prompt</span>).content
+
+<span class="code-keyword">def</span> <span class="code-function">redact</span>(<span class="code-variable">raw_text</span>: str) -> str:
+    <span class="code-variable">deterministic</span> = <span class="code-function">rule_pass</span>(<span class="code-variable">raw_text</span>)
+    <span class="code-keyword">return</span> <span class="code-function">llm_verify</span>(<span class="code-variable">deterministic</span>)  <span class="code-comment"># same input -> same output</span>
+</pre>
+          </div>
+
+          <div class="diagram-card"><svg viewBox="0 0 880 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: raw text flows through a rule engine and LLM verifier into scrubbed output, with an audit log branch">
+<defs><marker id="arrow-pii" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/>
+</marker></defs>
+<rect x="10" y="95" width="150" height="70" rx="10" class="dg-box"/>
+<text x="85.0" y="83" text-anchor="middle" class="dg-tag">SOURCE</text>
+<text x="85.0" y="127.0" text-anchor="middle" class="dg-title">Raw Text Input</text>
+<text x="85.0" y="144.0" text-anchor="middle" class="dg-sub">Unstructured docs</text>
+
+<rect x="205" y="95" width="170" height="70" rx="10" class="dg-box dg-box-teal"/>
+<text x="290.0" y="83" text-anchor="middle" class="dg-tag">DETERMINISTIC</text>
+<text x="290.0" y="127.0" text-anchor="middle" class="dg-title">Rule Engine</text>
+<text x="290.0" y="144.0" text-anchor="middle" class="dg-sub">Regex · PII patterns</text>
+
+<rect x="420" y="95" width="220" height="70" rx="10" class="dg-box dg-box-amber"/>
+<text x="530.0" y="83" text-anchor="middle" class="dg-tag">AI VERIFICATION</text>
+<text x="530.0" y="127.0" text-anchor="middle" class="dg-title">LLM Verifier</text>
+<text x="530.0" y="144.0" text-anchor="middle" class="dg-sub">LangChain + OpenAI / Ollama</text>
+
+<rect x="685" y="95" width="185" height="70" rx="10" class="dg-box dg-box-teal"/>
+<text x="777.5" y="83" text-anchor="middle" class="dg-tag">OUTPUT</text>
+<text x="777.5" y="127.0" text-anchor="middle" class="dg-title">Scrubbed Output</text>
+<text x="777.5" y="144.0" text-anchor="middle" class="dg-sub">99% redaction accuracy</text>
+
+<rect x="455" y="205" width="150" height="50" rx="10" class="dg-box"/>
+<text x="530.0" y="227.0" text-anchor="middle" class="dg-title">Audit Log</text>
+<text x="530.0" y="244.0" text-anchor="middle" class="dg-sub">Compliance trail</text>
+
+<path d="M160,130.0 H205" class="dg-arrow" marker-end="url(#arrow-pii)"/>
+
+<path d="M375,130.0 H420" class="dg-arrow" marker-end="url(#arrow-pii)"/>
+
+<path d="M640,130.0 H685" class="dg-arrow" marker-end="url(#arrow-pii)"/>
+
+<path d="M530.0,165 V205" class="dg-arrow" marker-end="url(#arrow-pii)"/>
+
+</svg></div>
+          <p class="diagram-scroll-hint">&larr; swipe to see the full pipeline &rarr;</p>
+        </div>
+      </div>
+
+      <!-- DEEP DIVE 2: ETL Transformation Logic -->
+      <div class="card p-8 rounded-2xl border-l-4 border-teal">
+        <h4 class="text-2xl md:text-3xl font-display font-bold text-teal mb-2">ETL Transformation Logic (Python)</h4>
+        <p class="text-[#93A1BD] mb-6">Cleaning and refining UK government datasets before loading into PostgreSQL (Project 4).</p>
+
+        <div class="space-y-6">
+          <div>
+            <h5 class="text-lg font-display font-semibold mb-3 flex items-center gap-2"><i data-lucide="cpu" class="w-5 h-5 text-teal"></i> Core Transformation Function</h5>
+            <pre class="code-block"><span class="code-comment"># Standardize currency and date formats</span>
 <span class="code-keyword">def</span> <span class="code-function">clean_and_transform</span>(<span class="code-variable">df</span>):
-    <span class="code-comment"># Drop rows where key identifier is missing</span>
+    <span class="code-comment"># Drop rows where the key identifier is missing</span>
     <span class="code-variable">df</span> = <span class="code-variable">df</span>.<span class="code-function">dropna</span>(subset=<span class="code-string">'record_id'</span>)
-    
-    <span class="code-comment"># Convert currency to standard float format</span>
+
+    <span class="code-comment"># Convert currency to a standard float format</span>
     <span class="code-variable">df</span>[<span class="code-string">'amount'</span>] = <span class="code-variable">df</span>[<span class="code-string">'amount'</span>].<span class="code-function">str.replace</span>(<span class="code-string">'£'</span>, <span class="code-string">''</span>)
     <span class="code-variable">df</span>[<span class="code-string">'amount'</span>] = <span class="code-variable">df</span>[<span class="code-string">'amount'</span>].<span class="code-function">str.replace</span>(<span class="code-string">','</span>, <span class="code-string">''</span>).<span class="code-function">astype</span>(float)
 
@@ -266,48 +246,117 @@
     <span class="code-keyword">for</span> col <span class="code-keyword">in</span> [<span class="code-string">'issue_date'</span>, <span class="code-string">'expiry_date'</span>]:
         <span class="code-variable">df</span>[col] = pd.<span class="code-function">to_datetime</span>(<span class="code-variable">df</span>[col], errors=<span class="code-string">'coerce'</span>)
 
-    <span class="code-comment"># Feature Engineering: Calculate duration in days</span>
+    <span class="code-comment"># Feature engineering: duration in days</span>
     <span class="code-variable">df</span>[<span class="code-string">'duration_days'</span>] = (<span class="code-variable">df</span>[<span class="code-string">'expiry_date'</span>] - <span class="code-variable">df</span>[<span class="code-string">'issue_date'</span>]).<span class="code-function">dt.days</span>
-    
+
     <span class="code-keyword">return</span> <span class="code-variable">df</span>
-                            </pre>
-                             <div class="text-right mt-4">
-                                <a href="https://github.com/your-repo-link" target="_blank" class="text-accent hover:underline flex items-center justify-end">
-                                    View Full Repository <i data-lucide="external-link" class="w-4 h-4 ml-1"></i>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="architecture-image-container">
-                             <h5 class="text-xl font-semibold text-slate-300 mb-3 flex items-center"><i data-lucide="git-merge" class="w-5 h-5 mr-2 text-cyan-400"></i> ETL Architecture Flow</h5>
-                             <img src="Pictures/Solomon_Workflow.png" alt="Architectural diagram showing UK Government data ingestion and ETL flow" class="rounded-lg border border-slate-700">
-                             <p class="text-sm text-slate-400 mt-2">Diagram: Automated Data Mining, Cleaning and Loading (ETL)</p>
-                        </div>
-                    </div>
-                </div>
+</pre>
+          </div>
 
-                <!-- DEEP DIVE 2: FastAPI Endpoint (Cloud Run CI/CD) - Project 2 -->
-                <div class="card p-8 rounded-2xl border-l-4 border-rose-500">
-                    <h4 class="text-3xl font-bold text-rose-400 mb-4">FastAPI Endpoint (GCP Cloud Run)</h4>
-                    <p class="text-slate-400 mb-6">Demonstrating a Python API endpoint used to serve clean data for integration with Power Apps and Power Automate (HCLTech Automation Solution).</p>
-                    
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="architecture-image-container order-2 md:order-1">
-                             <h5 class="text-xl font-semibold text-slate-300 mb-3 flex items-center"><i data-lucide="cloud" class="w-5 h-5 mr-2 text-rose-400"></i> Cloud Run CI/CD Architecture</h5>
-                             <img src="Pictures/BI_pipeline.png" alt="Architectural diagram showing GCP CI/CD deployment flow" class="rounded-lg border border-slate-700">
-                             <p class="text-sm text-slate-400 mt-2">Diagram: GCP CI/CD for Automation Endpoint</p>
-                        </div>
+          <div class="diagram-card"><svg viewBox="0 0 900 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: UK government data sources flow through a Python ETL script with a cron scheduler, into PostgreSQL, then a client web app">
+<defs><marker id="arrow-etl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/>
+</marker></defs>
+<rect x="10" y="93" width="180" height="64" rx="10" class="dg-box"/>
+<text x="100.0" y="81" text-anchor="middle" class="dg-tag">SOURCE</text>
+<text x="100.0" y="122.0" text-anchor="middle" class="dg-title">UK Gov Data</text>
+<text x="100.0" y="139.0" text-anchor="middle" class="dg-sub">APIs / files</text>
 
-                        <div class="order-1 md:order-2">
-                            <h5 class="text-xl font-semibold text-slate-300 mb-3 flex items-center"><i data-lucide="zap" class="w-5 h-5 mr-2 text-rose-400"></i> FastAPI Endpoint Code</h5>
-                            <pre class="code-block h-64">
-<span class="code-comment"># main.py for Cloud Run deployment</span>
+<rect x="245" y="93" width="190" height="64" rx="10" class="dg-box dg-box-amber"/>
+<text x="340.0" y="81" text-anchor="middle" class="dg-tag">TRANSFORM</text>
+<text x="340.0" y="122.0" text-anchor="middle" class="dg-title">Python ETL Script</text>
+<text x="340.0" y="139.0" text-anchor="middle" class="dg-sub">Mine · clean · validate</text>
+
+<rect x="260" y="198" width="160" height="50" rx="10" class="dg-box dg-box-teal"/>
+<text x="340.0" y="186" text-anchor="middle" class="dg-tag">SCHEDULE</text>
+<text x="340.0" y="220.0" text-anchor="middle" class="dg-title">Cron Scheduler</text>
+<text x="340.0" y="237.0" text-anchor="middle" class="dg-sub">Orchestration</text>
+
+<rect x="495" y="93" width="170" height="64" rx="10" class="dg-box dg-box-teal"/>
+<text x="580.0" y="81" text-anchor="middle" class="dg-tag">STORAGE</text>
+<text x="580.0" y="122.0" text-anchor="middle" class="dg-title">PostgreSQL</text>
+<text x="580.0" y="139.0" text-anchor="middle" class="dg-sub">Schema + final tables</text>
+
+<rect x="720" y="93" width="170" height="64" rx="10" class="dg-box"/>
+<text x="805.0" y="81" text-anchor="middle" class="dg-tag">CONSUMPTION</text>
+<text x="805.0" y="122.0" text-anchor="middle" class="dg-title">Client Web App</text>
+<text x="805.0" y="139.0" text-anchor="middle" class="dg-sub">Reads live data</text>
+
+<path d="M190,125.0 H245" class="dg-arrow" marker-end="url(#arrow-etl)"/>
+
+<path d="M340.0,157 V198" class="dg-arrow" marker-end="url(#arrow-etl)"/>
+
+<path d="M435,125.0 H495" class="dg-arrow" marker-end="url(#arrow-etl)"/>
+
+<path d="M665,125.0 H720" class="dg-arrow" marker-end="url(#arrow-etl)"/>
+
+</svg></div>
+          <p class="diagram-scroll-hint">&larr; swipe to see the full pipeline &rarr;</p>
+        </div>
+      </div>
+
+      <!-- DEEP DIVE 3: FastAPI Endpoint -->
+      <div class="card p-8 rounded-2xl border-l-4 border-amber">
+        <h4 class="text-2xl md:text-3xl font-display font-bold text-amber mb-2">FastAPI Endpoint (GCP Cloud Run)</h4>
+        <p class="text-[#93A1BD] mb-6">Serving clean data to PowerApps and Power Automate behind the HCLTech automation tool (Project 3).</p>
+
+        <div class="space-y-6">
+          <div class="diagram-card"><svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: SharePoint source flows through Cloud Run ETL, branching to CI/CD and Terraform, into BigQuery and then Power BI/Looker">
+<defs><marker id="arrow-bq" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/>
+</marker></defs>
+<rect x="10" y="133" width="150" height="64" rx="10" class="dg-box"/>
+<text x="85.0" y="121" text-anchor="middle" class="dg-tag">SOURCE</text>
+<text x="85.0" y="162.0" text-anchor="middle" class="dg-title">SharePoint API</text>
+<text x="85.0" y="179.0" text-anchor="middle" class="dg-sub">Source system</text>
+
+<rect x="200" y="133" width="170" height="64" rx="10" class="dg-box dg-box-amber"/>
+<text x="285.0" y="121" text-anchor="middle" class="dg-tag">COMPUTE</text>
+<text x="285.0" y="162.0" text-anchor="middle" class="dg-title">Cloud Run</text>
+<text x="285.0" y="179.0" text-anchor="middle" class="dg-sub">Python ETL service</text>
+
+<rect x="200" y="34" width="170" height="56" rx="10" class="dg-box dg-box-teal"/>
+<text x="285.0" y="22" text-anchor="middle" class="dg-tag">CI / CD</text>
+<text x="285.0" y="59.0" text-anchor="middle" class="dg-title">Cloud Build</text>
+<text x="285.0" y="76.0" text-anchor="middle" class="dg-sub">Artifact Registry / CI/CD</text>
+
+<rect x="200" y="230" width="170" height="56" rx="10" class="dg-box dg-box-teal"/>
+<text x="285.0" y="218" text-anchor="middle" class="dg-tag">INFRA</text>
+<text x="285.0" y="255.0" text-anchor="middle" class="dg-title">Terraform</text>
+<text x="285.0" y="272.0" text-anchor="middle" class="dg-sub">IaC · disaster recovery</text>
+
+<rect x="410" y="133" width="190" height="64" rx="10" class="dg-box dg-box-amber"/>
+<text x="505.0" y="121" text-anchor="middle" class="dg-tag">WAREHOUSE</text>
+<text x="505.0" y="162.0" text-anchor="middle" class="dg-title">BigQuery</text>
+<text x="505.0" y="179.0" text-anchor="middle" class="dg-sub">Staging → final tables</text>
+
+<rect x="650" y="133" width="190" height="64" rx="10" class="dg-box"/>
+<text x="745.0" y="121" text-anchor="middle" class="dg-tag">BI LAYER</text>
+<text x="745.0" y="162.0" text-anchor="middle" class="dg-title">Power BI / Looker</text>
+<text x="745.0" y="179.0" text-anchor="middle" class="dg-sub">BI consumption layer</text>
+
+<path d="M160,165.0 H200" class="dg-arrow" marker-end="url(#arrow-bq)"/>
+
+<path d="M285.0,133 V90" class="dg-arrow" marker-end="url(#arrow-bq)"/>
+
+<path d="M285.0,197 V230" class="dg-arrow" marker-end="url(#arrow-bq)"/>
+
+<path d="M370,165.0 H410" class="dg-arrow" marker-end="url(#arrow-bq)"/>
+
+<path d="M600,165.0 H650" class="dg-arrow" marker-end="url(#arrow-bq)"/>
+
+</svg></div>
+          <p class="diagram-scroll-hint">&larr; swipe to see the full pipeline &rarr;</p>
+
+          <div>
+            <h5 class="text-lg font-display font-semibold mb-3 flex items-center gap-2"><i data-lucide="zap" class="w-5 h-5 text-amber"></i> FastAPI Endpoint Code</h5>
+            <pre class="code-block"><span class="code-comment"># main.py for Cloud Run deployment</span>
 <span class="code-keyword">from</span> fastapi <span class="code-keyword">import</span> FastAPI, HTTPException
 <span class="code-keyword">from</span> typing <span class="code-keyword">import</span> List, Dict
 
 <span class="code-variable">app</span> = <span class="code-function">FastAPI</span>()
 
-<span class="code-comment"># Mock database connection / BigQuery interface</span>
+<span class="code-comment"># BigQuery client connection</span>
 <span class="code-variable">DATA_SOURCE</span> = get_bigquery_client()
 
 <span class="code-comment"># Endpoint to retrieve processed client data</span>
@@ -321,28 +370,95 @@
         <span class="code-keyword">raise</span> <span class="code-function">HTTPException</span>(
             status_code=500, detail=<span class="code-string">f"Database error: {e}"</span>
         )
-                            </pre>
-                            <div class="text-right mt-4">
-                                <a href="https://github.com/your-repo-link" target="_blank" class="text-accent hover:underline flex items-center justify-end">
-                                    View Full Repository <i data-lucide="external-link" class="w-4 h-4 ml-1"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer - SYNCED -->
-    <footer class="bg-slate-950 py-8 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-slate-500">
-            <p>&copy; 2024 Sparsh Verma. Data Engineering Portfolio.</p>
-            <p class="mt-2">Built with <span class="text-red-500">♥</span> and Tailwind CSS.</p>
+</pre>
+          </div>
         </div>
-    </footer>
+      </div>
 
+      <!-- DEEP DIVE 4: Web Scraping & Sentiment -->
+      <div class="card p-8 rounded-2xl border-l-4 border-teal">
+        <h4 class="text-2xl md:text-3xl font-display font-bold text-teal mb-2">Web Scraping &amp; Sentiment Scoring</h4>
+        <p class="text-[#93A1BD] mb-6">Scraping and scoring sentiment across 200+ sites on an automated schedule (Project 5).</p>
+
+        <div class="space-y-6">
+          <div>
+            <h5 class="text-lg font-display font-semibold mb-3 flex items-center gap-2"><i data-lucide="search" class="w-5 h-5 text-teal"></i> Scrape &amp; Score</h5>
+            <pre class="code-block"><span class="code-comment"># sentiment_pipeline.py — score sentiment across scraped pages</span>
+<span class="code-keyword">from</span> bs4 <span class="code-keyword">import</span> BeautifulSoup
+<span class="code-keyword">import</span> requests
+
+<span class="code-keyword">def</span> <span class="code-function">fetch_text</span>(<span class="code-variable">url</span>: str) -> str:
+    <span class="code-variable">resp</span> = requests.<span class="code-function">get</span>(<span class="code-variable">url</span>, timeout=<span class="code-variable">10</span>)
+    <span class="code-variable">soup</span> = <span class="code-function">BeautifulSoup</span>(<span class="code-variable">resp</span>.content, <span class="code-string">"html.parser"</span>)
+    <span class="code-keyword">return</span> <span class="code-string">" "</span>.<span class="code-function">join</span>(p.<span class="code-function">get_text</span>() <span class="code-keyword">for</span> p <span class="code-keyword">in</span> <span class="code-variable">soup</span>.<span class="code-function">find_all</span>(<span class="code-string">"p"</span>))
+
+<span class="code-keyword">def</span> <span class="code-function">score_sentiment</span>(<span class="code-variable">text</span>: str) -> float:
+    <span class="code-variable">positive</span>, <span class="code-variable">negative</span> = {<span class="code-string">"good"</span>, <span class="code-string">"strong"</span>, <span class="code-string">"growth"</span>}, {<span class="code-string">"bad"</span>, <span class="code-string">"weak"</span>, <span class="code-string">"decline"</span>}
+    <span class="code-variable">words</span> = <span class="code-variable">text</span>.<span class="code-function">lower</span>().<span class="code-function">split</span>()
+    <span class="code-variable">score</span> = <span class="code-function">sum</span>(w <span class="code-keyword">in</span> <span class="code-variable">positive</span> <span class="code-keyword">for</span> w <span class="code-keyword">in</span> <span class="code-variable">words</span>) - <span class="code-function">sum</span>(w <span class="code-keyword">in</span> <span class="code-variable">negative</span> <span class="code-keyword">for</span> w <span class="code-keyword">in</span> <span class="code-variable">words</span>)
+    <span class="code-keyword">return</span> <span class="code-variable">score</span> / <span class="code-function">max</span>(<span class="code-function">len</span>(<span class="code-variable">words</span>), <span class="code-variable">1</span>)
+</pre>
+          </div>
+
+          <div class="diagram-card"><svg viewBox="0 0 900 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: an Excel file of URLs feeds a Python pipeline that scrapes, cleans, and scores sentiment, producing an averaged output">
+<defs><marker id="arrow-scrape" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/>
+</marker></defs>
+<rect x="10" y="130" width="160" height="70" rx="10" class="dg-box"/>
+<text x="90.0" y="118" text-anchor="middle" class="dg-tag">SOURCE</text>
+<text x="90.0" y="162.0" text-anchor="middle" class="dg-title">Excel File</text>
+<text x="90.0" y="179.0" text-anchor="middle" class="dg-sub">List of target URLs</text>
+
+<rect x="270" y="40" width="370" height="200" rx="12" class="dg-box dg-box-amber"/>
+<text x="455.0" y="28" text-anchor="middle" class="dg-tag">PROCESS</text>
+<text x="455.0" y="60" text-anchor="middle" class="dg-title">Python Pipeline</text>
+<rect x="300" y="80" width="310" height="44" rx="10" class="dg-box dg-box-teal"/>
+<text x="455.0" y="99.0" text-anchor="middle" class="dg-title">1. Scrape</text>
+<text x="455.0" y="116.0" text-anchor="middle" class="dg-sub">BeautifulSoup / Selenium</text>
+
+<rect x="300" y="134" width="310" height="44" rx="10" class="dg-box dg-box-teal"/>
+<text x="455.0" y="153.0" text-anchor="middle" class="dg-title">2. Clean Text</text>
+<text x="455.0" y="170.0" text-anchor="middle" class="dg-sub">Strip markup, normalize</text>
+
+<rect x="300" y="188" width="310" height="44" rx="10" class="dg-box dg-box-teal"/>
+<text x="455.0" y="207.0" text-anchor="middle" class="dg-title">3. Score Sentiment</text>
+<text x="455.0" y="224.0" text-anchor="middle" class="dg-sub">NLP polarity scoring</text>
+
+<path d="M455.0,124 V134" class="dg-arrow" marker-end="url(#arrow-scrape)"/>
+
+<path d="M455.0,178 V188" class="dg-arrow" marker-end="url(#arrow-scrape)"/>
+
+<rect x="720" y="130" width="170" height="70" rx="10" class="dg-box"/>
+<text x="805.0" y="118" text-anchor="middle" class="dg-tag">OUTPUT</text>
+<text x="805.0" y="162.0" text-anchor="middle" class="dg-title">Output</text>
+<text x="805.0" y="179.0" text-anchor="middle" class="dg-sub">Saved & displayed score</text>
+
+<path d="M170,165.0 H270" class="dg-arrow" marker-end="url(#arrow-scrape)"/>
+
+<path d="M640,140.0 H720" class="dg-arrow" marker-end="url(#arrow-scrape)"/>
+
+</svg></div>
+          <p class="diagram-scroll-hint">&larr; swipe to see the full pipeline &rarr;</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-14">
+      <a href="index.html#projects" class="btn btn-outline">
+        <i data-lucide="arrow-left" class="w-5 h-5"></i> Back to Projects
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="border-t border-line py-8 mt-6">
+  <div class="max-w-7xl mx-auto px-4 text-center text-sm text-[#5C6B85] font-mono">
+    <p>© 2026 Sparsh Verma — Data Engineering Portfolio.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
 </body>
 </html>
