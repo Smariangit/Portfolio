@@ -121,14 +121,14 @@
      *    – Who has access: Anyone
      * 4. Copy the deployment URL and paste it below, replacing the placeholder.
      */
-    const SCRIPT_URL = "YOUR_APPS_SCRIPT_DEPLOYMENT_URL_HERE";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwBQtrzByW8Ziz2Ary6boaC_FQUjS2tXWB_uhpywwpxkncev71W2aC0SxZ_zv9k41_SIA/exec";
 
     const btn      = form.querySelector("[data-submit-btn]");
     const statusEl = document.getElementById("form-status");
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      if (SCRIPT_URL === "YOUR_APPS_SCRIPT_DEPLOYMENT_URL_HERE") {
+      if (SCRIPT_URL === "https://script.google.com/macros/s/AKfycbwBQtrzByW8Ziz2Ary6boaC_FQUjS2tXWB_uhpywwpxkncev71W2aC0SxZ_zv9k41_SIA/exec") {
         statusEl.textContent = "Form not yet configured — email sparshv2325@gmail.com directly.";
         statusEl.className = "form-status form-status--err show";
         return;
