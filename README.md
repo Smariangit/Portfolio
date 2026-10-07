@@ -1,39 +1,38 @@
 # Sparsh Verma — Portfolio
 
-Source for [smariangit.github.io](https://smariangit.github.io) — a personal portfolio
-covering data engineering, cloud automation, and applied GenAI work.
+Professional portfolio site for client and recruiter audiences.
 
 ## Structure
 
 ```
 index.html               Main site (About, Skills, Experience, Projects, Contact)
 portfolio-gallery.html   Architecture deep-dives & code walkthroughs
-css/style.css            Design tokens, components, animations
-js/main.js                Nav, scroll-spy, reveal-on-scroll, experience calculator
-assets/Resume.pdf         Downloadable résumé
-Pictures/                 Dashboard screenshot
-favicon.svg               Site icon
+css/style.css            Design system (single gold accent, executive palette)
+js/main.js               Interactions + Google Apps Script contact form handler
+assets/Resume.pdf        Résumé (replace with latest version)
+Pictures/                Dashboard screenshot
+favicon.svg              Site icon
 ```
 
-Architecture diagrams on both pages are hand-built inline SVG (no external image
-files), so they stay crisp at any size and need no extra network requests.
+## Contact form setup (Google Apps Script)
 
-## Stack
+1. Open [sheets.new](https://sheets.new) — this will be your inbox sheet.
+2. **Extensions → Apps Script** — paste the code from the comment block at the bottom of `index.html`.
+3. **Deploy → New deployment → Web app**
+   - Execute as: **Me**
+   - Who has access: **Anyone**
+4. Copy the deployment URL.
+5. In `js/main.js`, replace `YOUR_APPS_SCRIPT_DEPLOYMENT_URL_HERE` with that URL.
 
-Static HTML/CSS/JS — no build step. Styling via [Tailwind CSS](https://tailwindcss.com)
-(Play CDN) plus a small custom stylesheet for the design system, [Lucide](https://lucide.dev)
-for icons, and Google Fonts (Space Grotesk, Inter, JetBrains Mono).
+Every submission writes a row to the sheet and sends you an email notification.
 
 ## Running locally
 
-No build step required — just serve the folder:
-
 ```bash
 python3 -m http.server 8000
-# then open http://localhost:8000
+# open http://localhost:8000
 ```
 
-## Deployment
+## Deploying
 
-Hosted on GitHub Pages directly from this repo. Pushing to `main` is enough —
-there's nothing to compile.
+Static HTML/CSS/JS — push to GitHub Pages directly. No build step needed.
