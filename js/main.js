@@ -128,7 +128,7 @@
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      if (SCRIPT_URL === "https://script.google.com/macros/s/AKfycbwBQtrzByW8Ziz2Ary6boaC_FQUjS2tXWB_uhpywwpxkncev71W2aC0SxZ_zv9k41_SIA/exec") {
+      if (SCRIPT_URL === "Error") {
         statusEl.textContent = "Form not yet configured — email sparshv2325@gmail.com directly.";
         statusEl.className = "form-status form-status--err show";
         return;
