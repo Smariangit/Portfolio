@@ -128,7 +128,7 @@
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      if (SCRIPT_URL === "Error") {
+      if (SCRIPT_URL === "YOUR_APPS_SCRIPT_DEPLOYMENT_URL_HERE") {
         statusEl.textContent = "Form not yet configured — email sparshv2325@gmail.com directly.";
         statusEl.className = "form-status form-status--err show";
         return;
