@@ -869,57 +869,5 @@ tailwind.config = {
 </footer>
 
 <script src="js/main.js"></script>
-
-<!--
-════════════════════════════════════════════════════════════════
-  GOOGLE APPS SCRIPT — Contact Form Backend
-  ────────────────────────────────────────────────────────────
-  1. Go to sheets.new → create a new Google Sheet
-  2. Extensions → Apps Script
-  3. Paste the code below and save
-  4. Deploy → New deployment → Web app
-     · Execute as: Me
-     · Who has access: Anyone
-  5. Copy the deployment URL
-  6. In js/main.js, replace YOUR_APPS_SCRIPT_DEPLOYMENT_URL_HERE
-════════════════════════════════════════════════════════════════
-
-function doPost(e) {
-  try {
-    const data = JSON.parse(e.postData.contents);
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    sheet.appendRow([
-      new Date(),
-      data.name    || '',
-      data.email   || '',
-      data.company || '',
-      data.subject || '',
-      data.message || ''
-    ]);
-    MailApp.sendEmail({
-      to: 'sparshv2325@gmail.com',
-      subject: '[Portfolio] ' + (data.subject || 'New enquiry') + ' — ' + (data.name || 'Unknown'),
-      body: [
-        'Name:    ' + data.name,
-        'Email:   ' + data.email,
-        'Company: ' + (data.company || '—'),
-        'Topic:   ' + data.subject,
-        '',
-        'Message:',
-        data.message
-      ].join('\n')
-    });
-    return ContentService
-      .createTextOutput(JSON.stringify({ status: 'ok' }))
-      .setMimeType(ContentService.MimeType.JSON);
-  } catch(err) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ status: 'error', message: err.message }))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-}
-
-════════════════════════════════════════════════════════════════
--->
 </body>
 </html>
